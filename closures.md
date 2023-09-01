@@ -24,14 +24,15 @@ It has 2 components in it.
 - Creation Phase (Memory Creation Phase)
 - Code Execution Phase
 
-Eg:
-var n=5;
-function cube(num){
-var ans=num\*num;
-return ans;
-}
-var cube2=cube(n);
-var cube4=cube(4);
+Eg: \
+
+`var n=5;` \
+`function cube(num){` \
+`var ans=num*num;` \
+`return ans;` \
+`}` \
+`var cube2=cube(n);` \
+`var cube4=cube(4);` \
 
 - So if you have this code, in first phase of memory creation JS will allocate memory to all the variables and functions.
 - So now let me tell you what does it store when it allocates memory to n it stores a special value which is known as
@@ -90,18 +91,18 @@ var cube4=cube(4);
 
 - Hoisting is a phenomena in JS, by which we can access variables and functions even before we have initialized it or have put some values in it. You can access it without any error.
 
-Eg)
-getColor(); // blue
-console.log(x); //undefined
-var x=7;
+Eg) \
 
-function getColor() {
-console.log("blue);
-}
-console.log(x); //7
-getColor(); // blue
+`getColor(); // blue`\
+`console.log(x); //undefined`\
+`var x=7;`\
 
-console.log(getColor); //Return the above function
+`function getColor() {`\
+`console.log("blue);`\
+`}`\
+`console.log(x); //7`\
+`getColor(); // blue`\
+`console.log(getColor); //Return the above function`\
 
 - Even before code starts executing memory is allocated to all variables and functions.
 
@@ -135,20 +136,22 @@ In case of Arrow function it just behaves like the variables. Now getColor() doe
 
 - It defines undefined to getColor.
 
-Eg)
-getColor();
-console.log(getColor);
+Eg)\
 
-var getColor=()=>{
-console.log("blue";)
-}
+`getColor();`\
+`console.log(getColor);`\
+`var getColor=()=>{`\
+`console.log("blue";)`\
+`}`\
 
 ## Again if we delare functions in this way it will bahave like a variables.
 
-Eg) getColor1(); // getColor1: undefined.
-var getColor1= function (){
-console.log("Red");
-}
+Eg)\ 
+
+`getColor1(); // getColor1: undefined`\
+`var getColor1= function (){`\
+`console.log("Red");`\
+`}`\
 
 # Shortest JS program and this keyword
 
@@ -178,14 +181,15 @@ console.log("Red");
 
 - Scope is directly related to the lexical environment. Scope, Scope chain and closures depend on lexical environment.
 
-Eg)
-function a(){
-console.log(b);
-}
-var b=10;
-a();
+Eg)\
 
-O/P= 10
+`function a(){`\
+`console.log(b);`\
+`}`\
+`var b=10;`\
+`a();`\
+
+`O/P= 10`\
 
 ## Whenever it reaches & it tries to execute the console.log(b). What will JS do ?
 
@@ -195,41 +199,44 @@ created b inside that function.
 
 # So what will happen? Will it print undefined?
 
-Eg)
-function a(){
-c();
-function c(){
-console.log(b);
-}
-}
-var b=10;
-a();
+Eg)\
 
-O/P= 10
+`function a(){`\
+`c();`\
+`function c(){`\
+`console.log(b);`\
+`}`\
+`}`\
+`var b=10;`\
+`a();`\
 
-Eg)
-function a(){
-var b=10;
-function c(){
-console.log(b);
-}
-}
-a();
+`O/P= 10`\
 
-O/P= 10
+Eg)\
 
-Eg)
-function a(){
-var b=10;
-c();
-function c(){
+`function a(){`\
+`var b=10;`\
+`function c(){`\
+`console.log(b);`\
+`}`\
+`}`\
+`a();`\
 
-}
-}
-a();
-console.log(b);
+`O/P= 10`\
 
-O/P= undefined
+Eg)\
+
+`function a(){`\
+`var b=10;`\
+`c();`\
+`function c(){`\
+
+`}`\
+`}`\
+`a();`\
+`console.log(b);`\
+
+`O/P= undefined`\
 
 ### Scope means where you can access a specific variable or function in our code. 2 scopes of a variable
 
@@ -253,13 +260,14 @@ O/P= undefined
 
 - let and const declarations are hoisted
 
-Eg)
-console.log(b); //undefined
-console.log(a); //ReferenceError:cannot access 'a' before initialization
-let a=10;
-var b=100;
-console.log(a); //10
-console.log(x); //ReferenceError: x is not defined
+Eg)\
+
+`console.log(b); //undefined`\
+`console.log(a); //ReferenceError:cannot access 'a' before initialization`\
+`let a=10;`\
+`var b=100;`\
+`console.log(a); //10`\
+`console.log(x); //ReferenceError: x is not defined`\
 
 - Memory was assigned to b to the var initialization. Var b was attached to the Global object.
 
@@ -273,55 +281,63 @@ console.log(x); //ReferenceError: x is not defined
 
 - let- let is more strict than var.Redeclaration is not possible in let. Duplication of let is not possible. Same name cannot be used to declare var variables.
 
-Eg)
-let a=10;
-let a =100; //Syntax error:Identifier has already been declared.
+Eg) \
 
-Eg)
-let a=10;
-var a =100; //Syntax error:Identifier has already been declared.
+`let a=10;`\
+`let a =100; //Syntax error:Identifier has already been declared`\
+
+Eg)\
+
+`let a=10;`\
+`var a =100; //Syntax error:Identifier has already been declared`\
 
 - Const- behaves similar to let but is more stricter than let.
 
-Eg)
-let a;
-a=10;
-console.log(a);// 10
+Eg)\
+
+`let a;`\
+`a=10;`\
+`console.log(a);// 10`\
 Valid and possible in let
 
-Eg)
-const a;
-a=10;
-console.log(a);// Syntax error:Missing Intializer in const declaration.
+Eg)\
 
-Eg)
-const a=1000;// only possible
+`const a;`\
+`a=10;`\
+`console.log(a);// Syntax error:Missing Intializer in const declaration`\
 
-Eg)
-const a=1000;
-a=6; // Type error:Assignment to constant variable.
+Eg)\
+
+`const a=1000;// only possible`\
+
+Eg)\
+
+`const a=1000;`\
+`a=6; // Type error:Assignment to constant variable.`\
 
 # Difference between reference error and syntax error and type error.
 
 - Reference Error: When JS engine tries to find a specific variable inside the memory space & you cannot access it.
-  Eg)
-  console.log(a); //TDZ
-  let a=1000;
+Eg)\
 
-console.log(x);
+ `console.log(a); //TDZ`\
+  `let a=1000;`\
+`console.log(x);`\
 
 - Syntax Error:Here we are missing syntax.
 
-Eg)
-let a=100;
-let a=50;
-a cannot be redeclared. Redeclaration is not possible.
+Eg)\
+
+`let a=100;`\
+`let a=50; //a cannot be redeclared. Redeclaration is not possible `\
+
 
 - Type Error: You are trying to assign any other variable to the constant variable. Variable b is of const type
 
-Eg)
-const a=1000;
-a=6; // Type error:Assignment to constant variable.
+Eg)\
+
+`const a=1000;`\
+`a=6; // Type error:Assignment to constant variable`\
 
 - Try to use const whenever possible. If not const then use let. Try to keep var aside and donot use very much. To avoid Temporal Dead Zone to always put declarations and initializations on top of the scope. To avoid unexpected errors in JS code. We are shrinking this temporal dead zone window to zero while moving our initialization on the top.
 
@@ -333,112 +349,121 @@ a=6; // Type error:Assignment to constant variable.
   into one group. We need to group these statements together so we can use multiple statements in a place where JS expects
   only one statement.
 
-Eg)
-{
-//compound statement
-var a=10;
-console.log(a);
-}
+Eg)\
 
-Eg)
-if(true);//SyntaxError: Unexpected end of Input.
+`{`\
+//compound statement
+`var a=10;`\
+`console.log(a);`\
+`}`\
+
+Eg)\
+
+`if(true);//SyntaxError: Unexpected end of Input`\
 it expects one statement over here that why we get this error.
 
-Eg)
-if(true)true;
+Eg)\
 
-Eg)
-if(true){
+`if(true)true;`\
+
+Eg)\
+
+`if(true){`\
 //compound statement
-var a=10;
-console.log(a);  
-}
+`var a=10;`\
+`console.log(a);`\
+`}`\
 
 - Blocked Scope: what all variables and functions we can access inside this block.
 
-Eg)
-{
-var a=10;
-let b=20;
-const c=30;
-}
+Eg)\
 
-Block Script
-a b,c
+`{`\
+`var a=10;`\
+`let b=20;`\
+`const c=30;`\
+`}`\
+
+Block    Script
+a         b,c
 
 - We get let and const inside the block scope. This is a separate space where these b & c are hoisted & assigned undefined.
 
 - let and const are blocked scope i.e they are stored in the separate memory space which is reserved for this block & once it is finished executing this block & these variables let and const are no longer accessible. You cannot access let and const outside these block. var is accessible outside as it is in the global scope.
 
-Eg)
-{
-var a=10;
-let b=20;
-const c=30;
-console.log(a); //10
-console.log(b); //20
-console.log(c); //30
-}
+Eg)\
 
-console.log(a); //10
-console.log(b); //ReferenceError:b is not defined
-console.log(c); //ReferenceError:b is not defined
+`{`\
+`var a=10;`\
+`let b=20;`\
+`const c=30;`\
+`console.log(a); //10`\
+`console.log(b); //20`\
+`console.log(c); //30`\
+`}`\
+
+`console.log(a); //10`\
+`console.log(b); //ReferenceError:b is not defined`\
+`console.log(c); //ReferenceError:b is not defined`\
 
 - Block scope is removed only Global is present.
 
 ## Shadowing in JS
 
-Eg)
-var a=100; q
-{
-var a=10; v
-let b=20;
-const c=30;
-console.log(a); //10
-console.log(b); //20
-console.log(c); //30
-}
-console.log(a); //10
+Eg)\
+
+`var a=100; q`\
+`{`\
+`var a=10; v`\
+`let b=20;`\
+`const c=30;`\
+`console.log(a); //10`\
+`console.log(b); //20`\
+`console.log(c); //30`\
+`}`\
+`console.log(a); //10`\
 
 - If we have a same name variable outside this block so v variable shadows q variable. So v variable was shadowed & it also modified the value of q bcoz they are pointing to same memory location.
 
 ## let in Shadowing
 
-Eg)
-let b=100; q
-{
-var a=10;  
- let b=20; v
-const c=30;
-console.log(a); //10
-console.log(b); //20
-console.log(c); //30
-}
-console.log(b); //100
+Eg)\
 
-Global Block Script
-a :10 b:20 b:100
-c:30
+`let b=100; q`\
+`{`\
+`var a=10;  `\
+`let b=20; v`\
+`const c=30;`\
+`console.log(a); //10`\
+`console.log(b); //20`\
+`console.log(c); //30`\
+`}`\
+`console.log(b); //100`\
+
+Global  Block   Script
+a :10   b:20    b:100
+        c:30   
 
 This b of v shadowed over q. But if we access b outside I get q b's value which is outside the block.
 
 ## const in Shadowing
 
-Eg)
-const c=50; q
-{
-var a=10;  
- let b=20;  
- const c=30; v
-console.log(a); //10
-console.log(b); //20
-console.log(c); //30
-}
-console.log(c); //50
+Eg)\
 
-Global Block Script
-a :10 b:20 c:50
-c:30
+`const c=50; q`\
+`{`\
+`var a=10;  `\
+`let b=20;  `\
+`const c=30; v`\
+`console.log(a); //10`\
+`console.log(b); //20`\
+`console.log(c); //30`\
+`}`
+`console.log(c); //50`
+
+Global   Block   Script
+a :10    b:20    c:50
+         c:30
 
 This c of v shadowed over q. But if we access b outside I get q c's value which is outside the block.
 
@@ -447,87 +472,96 @@ This c of v shadowed over q. But if we access b outside I get q c's value which 
 - Shadowing is not only concept of block even if it behaves same in functions, also Similar Functional Scope Shadowing
   is similar.
 
-Eg)
-const c=100;
-function x(){
-const c=30;
-console.log(c); //30
-}
-console.log(c); //100
-x();
+Eg)\
+
+`const c=100;`\
+`function x(){`\
+`const c=30;`\
+`console.log(c); //30`\
+`}`\
+`console.log(c); //100`\
+`x();`\
 
 ## Illegal Shadowing
 
-Eg) Allowed
-var a= 20;
-{
-var a= 20;
-}
+Eg) Allowed \
 
-Eg) Not Allowed
-let a= 20;
-{
-var a= 20;
-}
+`var a= 20;`\
+`{`\
+`var a= 20;`\
+`}`\
+
+Eg) Not Allowed \
+
+`let a= 20;`\
+`{`\
+`var a= 20;`\
+`}`\
 
 - O/P- SyntaxError: Identifier a has alraedy been declared. Illegal Shadowing let using var is not possible. If it is
   shadowing something it shoul not cross boundary of its scope. In a particular scope let cannot be redeclared.
 
-Eg) Allowed
-let a= 20;
-{
-let a= 20;
-}
+Eg) Allowed \
 
-Eg) Allowed
-var a= 20;
-{
-let a= 20;
-}
+`let a= 20;`\
+`{`\
+`let a= 20;`\
+`}`\
 
-Eg) Allowed
-const a= 20;
-{
-const a= 20;
-}
+Eg) Allowed \
 
-Eg) Allowed
-let a= 20;
-function x(){
-var a=20;
-}
+`var a= 20;`\
+`{`\
+`let a= 20;`\
+`}`\
+
+Eg) Allowed \
+
+`const a= 20;`\
+`{`\
+`const a= 20;`\
+`}`\
+
+Eg) Allowed \
+
+`let a= 20;`\
+`function x(){`\
+`var a=20;`\
+`}`\
 
 - This is not illegal shadowing. It won't give any error. As because var is functional scope so var is inside it boundaries. It is not interferring with outside a now.
 
 * Block scope also follows lexical scope. These scope are lexical present.
 
-Eg) Allowed
-const a= 20;
-{
-const a=100;  
- {
-const a=200;  
- console.log(a); //200
-}
-console.log(a); //100
-}
-console.log(a);//20
+Eg) Allowed \
 
-Block Block Script
-a :200 a:100 a:20
+`const a= 20;`
+`{`
+`const a=100; ` 
+` {`
+`const a=200;  `
+` console.log(a); //200`
+`}`
+`console.log(a); //100`
+`}`
+`console.log(a);//20`
+
+Block     Block    Script
+a :200    a:100     a:20
 
 - a will get access from its nearest a.
 
-Eg) Allowed
-const a= 20;
-{
-const a=100; b
-{ g
-console.log(a); //100
-}
-console.log(a); //100
-}
-console.log(a);//20
+Eg) Allowed \
+
+`const a= 20;`
+`{`
+`const a=100; b`
+`{ g`
+`console.log(a); //100`
+`}`
+`console.log(a); //100`
+`}`
+`console.log(a);//20`
 
 - It follows lexical scope chain pattern if it was not present g scope a value will be from b scope 100.
 
@@ -572,20 +606,17 @@ You should have a good understanding of the following topics to understand closu
 
 - So, whenever you see the function keyword, code inside that function has access to variables declared outside the function.
 
-Eg)
-function foo(x) {
-var tmp = 3;
+Eg)\
 
-function bar(y) {
-console.log(x + y + (++tmp));
-}
-
-bar(10);
-}
-
-foo(2);
-
-O/P- 16
+`function foo(x) {`\
+`var tmp = 3;`\
+`function bar(y) {`\
+`console.log(x + y + (++tmp));`\
+`}`\
+`bar(10);`\
+`}`\
+`foo(2);`\
+`O/P- 16`\
 
 - This will log 16 because function bar closes over the parameter x and the variable tmp, both of which exist in the
   lexical environment of outer function foo. Function bar, together with its link with the lexical environment of function foo is a closure.
@@ -593,18 +624,18 @@ O/P- 16
 - A function doesn't have to return in order to create a closure. Simply by virtue of its declaration, every function
   closes over its enclosing lexical environment, forming a closure.
 
-Eg)
-function foo(x) {
-var tmp = 3;
+Eg)\
 
-return function (y) {
-console.log(x + y + (++tmp)); // will also log 16
-}
-}
+`function foo(x) {`\
+`var tmp = 3;`\
+`return function (y) {`\
+`console.log(x + y + (++tmp)); // will also log 16`\
+`}`\
+`}`\
 
-var bar = foo(2);
-bar(10); // 16
-bar(10); // 17
+`var bar = foo(2);`\
+`bar(10); // 16`\
+`bar(10); // 17`\
 
 - The above function will also log 16, because the code inside bar can still refer to argument x and variable tmp, even
   though they are no longer directly in scope.
@@ -612,15 +643,16 @@ bar(10); // 17
 - However, since tmp is still hanging around inside bar's closure, it is available to be incremented. It will be
   incremented each time you call bar.
 - The simplest example of a closure is this:
-  Eg)
-  var a = 10;
 
-function test() {
-console.log(a); // will output 10
-console.log(b); // will output 6
-}
-var b = 6;
-test();
+  Eg)\
+
+`  var a = 10;`\
+`function test() {`\
+`console.log(a); // will output 10`\
+`console.log(b); // will output 6`\
+`}`\
+`var b = 6;`\
+`test();`\
 
 - When a JavaScript function is invoked, a new execution context ec is created. Together with the function arguments and
   the target object, this execution context also receives a link to the lexical environment of the calling execution
@@ -635,21 +667,20 @@ We can use this example to explain closures, as follows:
 - The kitchen is a closure that has a local variable, called trashBags. There is a function inside the kitchen called
   getTrashBag that gets one trash bag and returns it.
 
-function makeKitchen() {
-var trashBags = ['A', 'B', 'C']; // only 3 at first
+`function makeKitchen() {`
+`var trashBags = ['A', 'B', 'C']; // only 3 at first`
+`return {`
+`getTrashBag: function() {`
+`return trashBags.pop();`
+`}`
+`};`
+`}`
 
-return {
-getTrashBag: function() {
-return trashBags.pop();
-}
-};
-}
+`var kitchen = makeKitchen();`
 
-var kitchen = makeKitchen();
-
-console.log(kitchen.getTrashBag()); // returns trash bag C
-console.log(kitchen.getTrashBag()); // returns trash bag B
-console.log(kitchen.getTrashBag()); // returns trash bag A
+`console.log(kitchen.getTrashBag()); // returns trash bag C`
+`console.log(kitchen.getTrashBag()); // returns trash bag B`
+`console.log(kitchen.getTrashBag()); // returns trash bag A`
 
 - Each time makeKitchen() is called, a new closure is created with its own separate trashBags.
 - The trashBags variable is local to the inside of each kitchen and is not accessible outside, but the inner function
@@ -658,45 +689,49 @@ console.log(kitchen.getTrashBag()); // returns trash bag A
   which has access to the inside of the closure, can be called from outside the closure. Returning the object with the
   getTrashBag function does that here.
 
-Eg)
-function x(){
-var a=7;
-function y(){
-console.log(a);
-}
-y();
-}
-x();
+Eg)\
+
+`function x(){`\
+`var a=7;`\
+`function y(){`\
+`console.log(a);`\
+`}`\
+`y();`\
+`}`\
+`x();`\
 
 - Inside y it forms a closure with the variable which were part of x lexical scope. Function y was bind to the variables of function x.
 
-Eg)
-function x(){
-var a= function y(){
-console.log(a);
-}
-y();
-}
-x();
+Eg)\
 
-Eg)
-function x(){
-var a= 7;
-y();
-}
-x(function y(){
-console.log(a);
-});
+`function x(){`\
+`var a= function y(){`\
+`console.log(a);`\
+`}`\
+`y();`\
+`}`\
+`x();`\
 
-Eg)
-function x(){
-var a= 7;
-function y(){
-console.log(a);
-}
-return y;
-}
-x();
+Eg)\
+
+`function x(){`\
+`var a= 7;`\
+`y();`\
+`}`\
+`x(function y(){`\
+`console.log(a);`\
+`});`\
+
+Eg)\
+
+`function x(){`\
+`var a= 7;`\
+`function y(){`\
+`console.log(a);`\
+`}`\
+`return y;`\
+`}`\
+`x();`\
 
 - Return these functions from function. You can return these function out of function. Instead of calling you can also
   return these function.
@@ -705,17 +740,18 @@ x();
   this y to the place where function was invoked when you execute x() it will return y.
 
 Eg)
-function x(){
-var a= 7;
-function y(){
-console.log(a);
-}
-return y;
-}
-var z=x();
-console.log(z);
-z();
-O/P=7
+
+`function x(){`\
+`var a= 7;`\
+`function y(){`\
+`console.log(a);`\
+`}`\
+`return y;`\
+`}`\
+`var z=x();`\
+`console.log(z);`\
+`z();`\
+`O/P=7`\
 
 - It returns whole function y. x was like vanished. JS is synchronous like after returning this. x is gone and no
   longer in call Stack. x execution context is no longer in the call stack. It completely gone all the variables & functions
@@ -726,58 +762,62 @@ O/P=7
   remembers its lexical scope where it came from. It remember there was something known as a.
   So when we return y not just function code was returned but the closure was returned.
 
-Eg)
-function x(){
-var a= 7;
-return function y(){
-console.log(a);
-}
-}
-var z=x();
-console.log(z);
-z();
-O/P=7
+Eg)\
 
-Eg)
-function x(){
-var a= 7;
-function y(){
-console.log(a);
-}
-a=100;
-return y;
-}
-var z=x();
-console.log(z); //100
-z();
+`function x(){`\
+`var a= 7;`\
+`return function y(){`\
+`console.log(a);`\
+`}`\
+`}`\
+`var z=x();`\
+`console.log(z);`\
+`z();`\
+`O/P=7`\
+
+Eg)\
+
+`function x(){` \
+`var a= 7;`\
+`function y(){`\
+`console.log(a);`\
+`}`\
+`a=100;`\
+`return y;`\
+`}`\
+`var z=x();`\
+`console.log(z); //100`\
+`z();`\
 
 - a does not refer to its value a's reference bit is returned.
 
-Eg)
-function z(){
-var b=100;
-function x(){
-var a= 7;
-function y(){
-console.log(a,b);
-}
-y();  
-}
-x();
-}
-z();
-O/P=7,100
+Eg)\
 
-Eg)
-function outer(){
-var a=10;
-function inner(){
-console.log(a);
-}
-return inner;
-}
-outer()();
-O/P-10
+`function z(){`\
+`var b=100;`\
+`function x(){`\
+`var a= 7;`\
+`function y(){`\
+`console.log(a,b);`\
+`}`\
+`y(); `\
+`}`\
+`x();`\
+`}`\
+`z();`\
+`O/P=7,100`\
+
+Eg)\
+
+`function outer(){`\
+`var a=10;`\
+`function inner(){`\
+`console.log(a);`\
+`}`\
+`return inner;`\
+`}`\
+`outer()();`\
+`O/P-10`\
 
 - This inner function has access to its outer environment. So if I create a variable in its outer environment. So this inner function has access to this "a" variable. This inner function along with its lexical outer environment is known as Closure.
 - This inner function forms a closure with this outer environment, environement of its parents & whatever it has access to.The major part of closure is if I return this inner function also if I try to return this inner function outside from this function & try to access it somewhere else in the outer scope also. It still remember what the value of "a" was.
@@ -793,16 +833,17 @@ total();
 
 ###### Q) If we move variable declaration var a=10; to exactly the place above return inner. So that won't be a closure?
 
-Eg)
-function outer(){
-function inner(){
-console.log(a);
-}
-var a=10;
-return inner;
-}
-outer()();
-O/P-10
+Eg)\
+
+`function outer(){`\
+`function inner(){`\
+`console.log(a);`\
+`}`\
+`var a=10;`\
+`return inner;`\
+`}`\
+`outer()();`\
+`O/P-10`\
 
 So this will still form a closure & will work the same way. This inner function will form a closure with its outer
 environment & not in a particular sequence. Where it is present in the code its not like that it still forms a closure
@@ -811,33 +852,34 @@ with it.
 ###### What if we change var a to let a? Considering let is a block scope? What difference will it make?
 
 Eg)
-function outer(){
-function inner(){
-console.log(a);
-}
-let a=10;
-return inner;
-}
-outer()();
-O/P-10
+
+`function outer(){`\
+`function inner(){`\
+`console.log(a);`\
+`}`\
+`let a=10;`\
+`return inner;`\
+`}`\
+`outer()();`\
+`O/P-10`\
 
 So this "a" variable has a block scope here. We can't access this let a variable outside. But still it behaves the same way.
 So this inner function still forms a closure even if it is let.
 
-###### Q) But what if it has a extra parameter in outer then what will happen ? Suppose let assume that it has a
+###### Q) But what if it has a extra parameter in outer then what will happen ? Suppose let assume that it has a parameter "b" this outer function. How will that work in them and closure?
 
-parameter "b" this outer function. How will that work in them and closure?
-Eg)
-function outer(b){
-function inner(){
-console.log(a,b);
-}
-let a=10;
-return inner;
-}
-var close=outer("helloworld")
-close();
-O/P-10 helloworld
+Eg)\
+
+`function outer(b){`\
+`function inner(){`\
+`console.log(a,b);`\
+`}`\
+`let a=10;`\
+`return inner;`\
+`}`\
+`var close=outer("helloworld")`\
+`close();`\
+`O/P-10 helloworld`\
 
 So it behaves the same way. Suppose we access "b" here in console.log it works the same way. Even if it is called outside
 it will work the same way & it will print "a" and "b" value. So this happens because inner function forms a closure with
@@ -848,41 +890,43 @@ its outer environement & "b" is also a part of outer environement of inner funct
 - If this outer function is nested inside one more function it will again form a closure with the environement of that
   function also.
 
-Eg)
-function outest(){
-var c=20;
-function outer(b){
-function inner(){
-console.log(a,b,c);
-}
-let a=10;
-return inner;
-}
-return outer;
-}
+Eg)\
 
-var close=outest()("helloworld")
-close();
-O/P-10 helloworld 20
+`function outest(){`\
+`var c=20;`\
+`function outer(b){`\
+`function inner(){`\
+`console.log(a,b,c);`\
+`}`\
+`let a=10;`\
+`return inner;`\
+`}`\
+`return outer;`\
+`}`\
+
+`var close=outest()("helloworld")`\
+`close();`\
+`O/P-10 helloworld 20`\
 
 ###### Q) What if we have a global variable with the conflictedname ? So if we have a conflicting name let a?
 
-Eg)
-function outest(){
-var c=20;
-function outer(b){
-function inner(){
-console.log(a,b,c);
-}
-let a=10;
-return inner;
-}
-return outer;
-}
-let a=100;
-var close=outest()("helloworld")
-close();
-O/P-10 helloworld 20
+Eg)\
+
+`function outest(){`\
+`var c=20;`\
+`function outer(b){`\
+`function inner(){`\
+`console.log(a,b,c);`\
+`}`\
+`let a=10;`\
+`return inner;`\
+`}`\
+`return outer;`\
+`}`\
+`let a=100;`\
+`var close=outest()("helloworld")`\
+`close();`\
+`O/P-10 helloworld 20`\
 
 - So this inner functions forms a closure with a. This inner function has access to this a & this a has a reference to (let a =10) & this variable (let a=100) is a completely new variable in global scope. So these two variables (let a=10 & let a=100) are completely different variables.It will still form a closure with this & print 10 & it does not care here.
 
@@ -896,39 +940,41 @@ O/P-10 helloworld 20
   function, which in turn was called by another function, then a chain of references to outer lexical environments
   is created. This chain is called the scope chain.
 
-Eg)
-function x(){
-var i=1;
-setTimeout(function(){
-console.log(i);
-},1000);
-console.log("JavaScript");
-}
-x();
-O/P- JavaScript
-1
+Eg)\
+
+`function x(){`\
+`var i=1;`\
+`setTimeout(function(){`\
+`console.log(i);`\
+`},1000);`\
+`console.log("JavaScript");`\
+`}`\
+`x();`\
+`O/P- JavaScript`\
+`1`\
 
 - setTimeout takes the callback function & stores it in some place and attaches a timer to it. Once that timer expires it
   takes that function put its again to call stack and runs it.
 
 ###### Q1 Supppose we are given a proble to print in the console(1,2,3,4,5) after each and every second.
 
-Eg)
-function x(){
-for(var i=1;i<=5;i++){
-setTimeout(function(){
-console.log(i);
-},i\*1000);
-}
-console.log("JavaScript");
-}
-x();
-O/P- JavaScript
-6
-6
-6
-6
-6
+Eg)\
+
+`function x(){`\
+`for(var i=1;i<=5;i++){`\
+`setTimeout(function(){`\
+`console.log(i);`\
+`},i\*1000);`\
+`}`\
+`console.log("JavaScript");`\
+`}`\
+`x();`\
+`O/P- JavaScript`\
+`6`\
+`6`\
+`6`\
+`6`\
+`6`\
 
 - Due to closures it remembers reference to i not value of i. Even if function is taken out of its original scope, if it is executed in some other scope it still remembers it lexical environment. It can access to the variables of its lexical scope.
 - When the loop runs the first time it take a copy of this function & attaches a timer to it & also remembers the reference of i. Similarly these 5 copy of these functions all of thm are pointing to same reference of i because environment for all these functions is the same reference are same. All of these copy of setTimeout callback function the reference to that i points out to same memory space.
@@ -939,62 +985,67 @@ O/P- JavaScript
 - As let has a block scope each and every loop iteration whenever everytime loop runs i is a new copy of i alltogether & each time setTimeout is run this callback function has a new copy of i with it.
 - Bcoz these let variable are block scoped so each and every time this loop is called or setTimeout function is called this function forms a closure with a new variable itself. Copy of i in each iteration is new
 
-Eg)
-function x(){
-for(let i=1;i<=5;i++){
-setTimeout(function(){
-console.log(i);
-},i\*1000);
-}
-console.log("JavaScript");
-}
-x();
-O/P- JavaScript
-1
-2
-3
-4
-5
+Eg)\
+
+`function x(){`\
+`for(let i=1;i<=5;i++){`\
+`setTimeout(function(){`\
+`console.log(i);`\
+`},i\*1000);`\
+`}`\
+`console.log("JavaScript");`\
+`}`\
+`x();`\
+`O/P- JavaScript`\
+`1`\
+`2`\
+`3`\
+`4`\
+`5`\
 
 ###### If you cannot use let you only have to use var?
 
 - Closure will only help you. You can do the samething. It was not working with var the copy of this i refers to the same memory location
 - Somehow we have to give the new copy of i everytime & forms a closure with it.
-  Eg)
-  function x(){
-  for(let i=1;i<=5;i++){
-  function close(i){
-  setTimeout(function(){
-  console.log(i);
-  },i\*1000);
-  }
-  close(i);
-  }
-  console.log("JavaScript");
-  }
-  x();
-  O/P- JavaScript
-  1
-  2
-  3
-  4
-  5
+
+  Eg)\
+
+  `function x(){`\
+`  for(let i=1;i<=5;i++){`\
+  `function close(i){`\
+`  setTimeout(function(){`\
+  `console.log(i);`\
+  `},i\*1000);`\
+  `}`\
+  `close(i);`\
+  `}`\
+  `console.log("JavaScript");`\
+  `}`\
+  `x();`\
+  `O/P- JavaScript`\
+  `1`\
+  `2`\
+  `3`\
+  `4`\
+  `5`\
 
 - Using this close function we create a new copy of i. Problem was that it was referring to the same memory space. Now using this close function we created a new copy of i.
 
 - In the following code, inner forms a closure with the lexical environment of the execution context created when foo is
   invoked, closing over variable secret:
 
-function foo() {
-const secret = Math.trunc(Math.random() \* 100)
-return function inner() {
-console.log(`The secret number is ${secret}.`)
-}
-}
-const f = foo() // `secret` is not directly accessible from outside `foo`
-f()
+Eg)\
 
-O/P=The secret number is 5.
+`function foo() {`\
+`const secret = Math.trunc(Math.random() \* 100)`\
+`return function inner() {`\
+`console.log("The secret number is ${secret}")`\
+`}`\
+`}`\
+`const f = foo() // "secret" is not directly accessible from outside "foo"`\
+`f()`\
+
+`O/P=The secret number is 5`\
 
 - In other words: in JavaScript, functions carry a reference to a private "box of state", to which only they
   (and any other functions declared within the same lexical environment) have access. This box of the state is invisible
@@ -1030,14 +1081,16 @@ O/P=The secret number is 5.
 - Suppose if we have a variable and we want to do some data privacy over it so that other function and other
   pieces of code cannot have access to that piece of data. So that is known as data hiding/privacy. We can encapsulate that data so other function and part of program cannot access it.
 - But a function can also access variables defined outside the function, like this:
-  Eg)
-  var count=0;
-  function incrementCounter(){
-  count++;
-  }
-  incrementCounter(); //1
-  incrementCounter(); //2
-  incrementCounter(); //3
+
+  Eg)\
+
+  `var count=0;`\
+  `function incrementCounter(){`\
+  `count++;`\
+  `}`\
+  `incrementCounter(); //1`\
+  `incrementCounter(); //2`\
+  `incrementCounter(); //3`\
 
 - In the last example, count is a global variable.In a web page, global variables belong to the page. Global variables
   can be used (and changed) by all other scripts in the page. Global variables live until the page is discarded, like
@@ -1046,58 +1099,62 @@ O/P=The secret number is 5.
 - So major flaw or problem with this code is that anybody in our code can access this count variable and change it. So here comes data hiding/privacy into picture. So we want to somehow ensure that nobody else in the program can modify this
   counter & only we can do through incrementCounter function. So to acheive this we can use closures.
 
-Eg)
-function counter(){
-var count=0;
-function incrementCounter(){
-count++;
-}
-}
-console.log(count);
-O/P- ReferenceError: count is not defined.
+Eg)\
+
+`function counter(){`\
+`var count=0;`\
+`function incrementCounter(){`\
+`count++;`\
+`}`\
+`}`\
+`console.log(count);`\
+`O/P- ReferenceError: count is not defined`\
 
 - It happens because count is a local variable. A local variable can only be used inside the function where it is defined.
 - Local variables have short lives. They are created when the function is invoked, and deleted when the function is finished.
 
 - It is hidden from other functions and other scripting code. So (var count=0) this variable is hidden so anybody from outside this scope tries to access this count. You cannot do. So it results out as an error. So we are like hiding our data or we have privacy over this count.
 
-Eg)
-function counter(){
-var count=0;
-count += 1;
-return count;
-}
-counter();//1
-counter();//1
-counter();//1
+Eg)\
+
+`function counter(){`\
+`var count=0;`\
+`count += 1;`\
+`return count;`\
+`}`\
+`counter();//1`\
+`counter();//1`\
+`counter();//1`\
 
 - It did not work because we reset the local counter every time we call the function.
 
 - It can only be achieved through functions. To achieve we can return this function. A JavaScript inner function can solve this. All functions have access to the global scope. In fact, in JavaScript, all functions have access to the scope
   "above" them. JavaScript supports nested functions. Nested functions have access to the scope "above" them.
 
-Eg)
-function counter(){
-var count=0;
-function incrementCounter(){
-count++;
-}
-incrementCounter()
-return count;
-}
-O/P=1
+Eg)\
+
+`function counter(){`\
+`var count=0;`\
+`function incrementCounter(){`\
+`count++;`\
+`}`\
+`incrementCounter()`\
+`return count;`\
+`}`\
+`O/P=1`\
 
 - In this example, the inner function incrementCounter() has access to the count variable in the parent function.This could have solved the counter dilemma, if we could reach the incrementCounter() function from the outside. We also need to find a way to execute count = 0 only once. We need a closure.
 
-Eg)
-const add = (function () {
-let count = 0;
-return function () {count += 1; return count}
-})();
+Eg)\
 
-add(); //1
-add(); //2
-add(); //3
+`const add = (function () {`\
+`let count = 0;`\
+`return function () {count += 1; return count}`\
+`})();`\
+
+`add(); //1`\
+`add(); //2`\
+`add(); //3`\
 
 - The variable add is assigned to the return value of a self-invoking function.The self-invoking function only runs once.
 - It sets the counter to zero (0), and returns a function expression. This way add becomes a function.
@@ -1105,17 +1162,18 @@ add(); //3
 - It makes it possible for a function to have "private" variables.The counter is protected by the scope of the anonymous
   function, and can only be changed using the add function.
 
-Eg)
-function counter(){
-var count=0;
-return function incrementCounter(){
-count++;
-console.log(count);
-}
-}
-var counter1=counter();
-counter1(); 1
-counter1(); 2
+Eg)\
+
+`function counter(){`\
+`var count=0;`\
+`return function incrementCounter(){`
+`count++;`\
+`console.log(count);`\
+`}`\
+`}`\
+`var counter1=counter();`\
+`counter1(); 1`\
+`counter1(); 2`\
 
 - When we return this function (incrementCounter) if forms a closure with counter & returns. So counter1 just call this
   counter it gives us access to this function (incrementCounter) has a closure with this variable (count). So this
@@ -1123,21 +1181,22 @@ counter1(); 2
 
 ###### So we call this counter1 function one more time. What will happen then? So like suppose call var counter2=counter(); So what will happen in thats case?
 
-Eg)
-function counter(){
-var count=0;
-return function incrementCounter(){
-count++;
-console.log(count);
-}
-}
-var counter1=counter();
-counter1(); 1
-counter1(); 2
+Eg)\
 
-var counter2=counter();
-counter2(); 1
-counter2(); 2
+`function counter(){`\
+`var count=0;`\
+`return function incrementCounter(){`\
+`count++;`\
+`console.log(count);`\
+`}`\
+`}`\
+`var counter1=counter();`\
+`counter1(); 1`\
+`counter1(); 2`\
+
+`var counter2=counter();`\
+`counter2(); 1`\
+`counter2(); 2`\
 
 - Its one more advantage. So this will be a fresh counter in itself. It wont touch the scope of counter1. So this is
   completely new counter in itself and it will again form a closure. So this incrementCounter function will form a closure
@@ -1148,22 +1207,23 @@ counter2(); 2
 
 - Yes it is not good way if we consider that case. May be in that case we can use a Constructor function. We can have separate function for Increment and Decrement.
 
-Eg)
-function counter(){
-var count=0;
-this.incrementCounter=function(){
-count++;
-console.log(count);
-}
-this.decrementCounter=function(){
-count--;
-console.log(count);
-}
-}
-var counter1= new counter(); // This is constructor function so new is used here.
-counter1.incrementCounter(); //1
-counter1.incrementCounter(); // 2
-counter1.decrementCounter(); // 1
+Eg)\
+
+`function counter(){`\
+`var count=0;`\
+`this.incrementCounter=function(){`\
+`count++;`\
+`console.log(count);`\
+`}`\
+`this.decrementCounter=function(){`\
+`count--;`\
+`console.log(count);`\
+`}`\
+`}`\
+`var counter1= new counter(); // This is constructor function so new is used here`\
+`counter1.incrementCounter(); //1`\
+`counter1.incrementCounter(); // 2`\
+`counter1.decrementCounter(); // 1`\
 
 - This is like a constructor function still data(count) is private & it forms a closure.
 
@@ -1183,29 +1243,31 @@ counter1.decrementCounter(); // 1
 
 ###### How are closures and garbage collected related to each other? What relation between garbage collector and closure?
 
-Eg)
-function a(){
-var x=0;
-return function b(){
-console.log(x);
-}
-}
-a();
+Eg)\
+
+`function a(){`\
+`var x=0;`\
+`return function b(){`\
+`console.log(x);`\
+`}`\
+`}`\
+`a();`\
 
 - This functions "b" forms a closure with x variable. So when it is returned . When this program is run call a(). Ideally
   after executing this a(). Once this a() function execution has finished. So it should go out of memory because it is no
   longer needed. So x could have garbage collected. So this variable x is present inside a() memory. But it forms a closure b which is referencing to x. So x is being referred with any inner function & returned. This means it cannot free up "b".
   Y is a copy of "b" function & b is closed over x. x memory cannot be freezed. So if we have form more closures it kinds of accumulates a lot of memory & these variables are not garbage collected. But some of the mordern browser & V8 Engine JS engine(v8 and Chrome). They have smart garbage collection mechanism where it finds out these variables are unreachable & these smartly collects garbage variables
 
-Eg)
-function a(){
-var x=0; z=10
-return function b(){
-console.log(x);
-}
-}
-var y=a();
-y();
+Eg)\
+
+`function a(){`\
+`var x=0; z=10;`\
+`return function b(){`\
+`console.log(x);`\
+`}`\
+`}`\
+`var y=a();`\
+`y();`\
 
 # What is smartly collects garbage variables?
 
@@ -1214,23 +1276,21 @@ y();
 
 # Uses of Closure
 
-Eg)
-function outer() {
-let arr = [];
-let i;
-for (i = 0; i < 4; i++) {
+Eg)\
+
+`function outer() {`\
+`let arr = [];`\
+`let i;`\
+`for (i = 0; i < 4; i++) {`\
 // storing anonymous function
-arr[i] = function () { return i; }
-}
+`arr[i] = function () { return i; }`\
+`}`\
+    `return arr;`// returning the array \
+`}`\
 
-    // returning the array.
-    return arr;
+`let get_arr = outer();`\
 
-}
-
-let get_arr = outer();
-
-console.log(get_arr[0]());
-console.log(get_arr[1]());
-console.log(get_arr[2]());
-console.log(get_arr[3]());
+`console.log(get_arr[0]());`\
+`console.log(get_arr[1]());`\
+`console.log(get_arr[2]());`\
+`console.log(get_arr[3]());`\
