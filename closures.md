@@ -102,6 +102,7 @@ console.log(getColor);  //Return the above function
 # Difference Betweeen not defined and undefined?
 
 Eg) 
+`
 getColor();  // blue
 console.log(x);    //   Uncaught ReferenceError :x is not defined 
 //var x=7 was removed
@@ -109,7 +110,7 @@ console.log(x);    //   Uncaught ReferenceError :x is not defined
 function getColor() {
     console.log("blue);
 }
-var x=7;
+var x=7;`
 
 - As soon as it sees x we have not reserved the memory for x, we just have reserved memory for getColor. Now x is not 
 present and there is no value for x, so now we get a reference error.
