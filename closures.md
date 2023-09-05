@@ -24,7 +24,7 @@ It has 2 components in it.
 - Creation Phase (Memory Creation Phase)
 - Code Execution Phase
 
-Eg: 
+Eg:
 
 `var n=5;` \
 `function cube(num){` \
@@ -32,7 +32,7 @@ Eg:
 `return ans;` \
 `}` \
 `var cube2=cube(n);` \
-`var cube4=cube(4);` 
+`var cube4=cube(4);`
 
 - So if you have this code, in first phase of memory creation JS will allocate memory to all the variables and functions.
 - So now let me tell you what does it store when it allocates memory to n it stores a special value which is known as
@@ -62,7 +62,7 @@ Eg:
   will be deleted. So now there won't be the execution context as soon as we return the value. so this whole thing will be
   deleted.This is how whole code is executed.
 
-# Call Stack-
+# Call Stack
 
 - Call Stack - It handles everything to manage this execution context creation, deletion, and the control. It manages a Stack. It has it's own call stack. Call stack maintains the order of execution of execution contexts.
 
@@ -91,7 +91,7 @@ Eg:
 
 - Hoisting is a phenomena in JS, by which we can access variables and functions even before we have initialized it or have put some values in it. You can access it without any error.
 
-Eg) 
+Eg)
 
 `getColor(); // blue`\
 `console.log(x); //undefined`\
@@ -108,16 +108,16 @@ Eg)
 
 # Difference Betweeen not defined and undefined?
 
-Eg) 
+Eg)
 
-`getColor(); // blue ` 
+`getColor(); // blue `
 `console.log(x); // Uncaught ReferenceError :x is not defined` \
-`//var x=7 was removed` 
+`//var x=7 was removed`
 
 `function getColor() {` \
 `console.log("blue);` \
 `}` \
-`var x=7;` 
+`var x=7;`
 
 - As soon as it sees x we have not reserved the memory for x, we just have reserved memory for getColor. Now x is not
   present and there is no value for x, so now we get a reference error.
@@ -318,10 +318,10 @@ Eg)
 # Difference between reference error and syntax error and type error.
 
 - Reference Error: When JS engine tries to find a specific variable inside the memory space & you cannot access it.
-Eg)\
+  Eg)\
 
- `console.log(a); //TDZ`\
-  `let a=1000;`\
+`console.log(a); //TDZ`\
+ `let a=1000;`\
 `console.log(x);`
 
 - Syntax Error:Here we are missing syntax.
@@ -330,7 +330,6 @@ Eg)
 
 `let a=100;`\
 `let a=50; //a cannot be redeclared. Redeclaration is not possible`
-
 
 - Type Error: You are trying to assign any other variable to the constant variable. Variable b is of const type
 
@@ -384,7 +383,7 @@ Eg)
 `const c=30;`\
 `}`\
 
-Block- a   
+Block- a  
 Script- b,c
 
 - We get let and const inside the block scope. This is a separate space where these b & c are hoisted & assigned undefined.
@@ -440,10 +439,9 @@ Eg)
 `}`\
 `console.log(b); //100`
 
-Global- a:10 
-Block- b:20 ,c:30   
-Script-  b:100
-
+Global- a:10
+Block- b:20 ,c:30  
+Script- b:100
 
 This b of v shadowed over q. But if we access b outside I get q b's value which is outside the block.
 
@@ -462,10 +460,9 @@ Eg)
 `}`\
 `console.log(c); //50`
 
-Global- a:10 
-Block- b:20 ,c:30   
-Script-  b:50
-
+Global- a:10
+Block- b:20 ,c:30  
+Script- b:50
 
 This c of v shadowed over q. But if we access b outside I get q c's value which is outside the block.
 
@@ -486,14 +483,14 @@ Eg)
 
 ## Illegal Shadowing
 
-Eg) Allowed 
+Eg) Allowed
 
 `var a= 20;`\
 `{`\
 `var a= 20;`\
 `}`
 
-Eg) Not Allowed 
+Eg) Not Allowed
 
 `let a= 20;`\
 `{`\
@@ -503,28 +500,28 @@ Eg) Not Allowed
 - O/P- SyntaxError: Identifier a has alraedy been declared. Illegal Shadowing let using var is not possible. If it is
   shadowing something it shoul not cross boundary of its scope. In a particular scope let cannot be redeclared.
 
-Eg) Allowed 
+Eg) Allowed
 
 `let a= 20;`\
 `{`\
 `let a= 20;`\
 `}`
 
-Eg) Allowed 
+Eg) Allowed
 
 `var a= 20;`\
 `{`\
 `let a= 20;`\
 `}`
 
-Eg) Allowed 
+Eg) Allowed
 
 `const a= 20;`\
 `{`\
 `const a= 20;`\
 `}`
 
-Eg) Allowed 
+Eg) Allowed
 
 `let a= 20;`\
 `function x(){`\
@@ -535,7 +532,7 @@ Eg) Allowed
 
 * Block scope also follows lexical scope. These scope are lexical present.
 
-Eg) Allowed 
+Eg) Allowed
 
 `const a= 20;`\
 `{`\
@@ -547,9 +544,9 @@ Eg) Allowed
 `console.log(a); //100`\
 `}`\
 `console.log(a);//20`
-Block- a:200 
+Block- a:200
 Block- a:100  
-Script-  a:20
+Script- a:20
 
 - a will get access from its nearest a.
 
@@ -1013,23 +1010,23 @@ Eg)
   Eg)
 
   `function x(){`\
-`  for(let i=1;i<=5;i++){`\
-  `function close(i){`\
-`  setTimeout(function(){`\
-  `console.log(i);`\
-  `},i\*1000);`\
-  `}`\
-  `close(i);`\
-  `}`\
-  `console.log("JavaScript");`\
-  `}`\
-  `x();`\
-  `O/P- JavaScript`\
-  `1`\
-  `2`\
-  `3`\
-  `4`\
-  `5`
+  `  for(let i=1;i<=5;i++){`\
+   `function close(i){`\
+  `  setTimeout(function(){`\
+   `console.log(i);`\
+   `},i\*1000);`\
+   `}`\
+   `close(i);`\
+   `}`\
+   `console.log("JavaScript");`\
+   `}`\
+   `x();`\
+   `O/P- JavaScript`\
+   `1`\
+   `2`\
+   `3`\
+   `4`\
+   `5`
 
 - Using this close function we create a new copy of i. Problem was that it was referring to the same memory space. Now using this close function we created a new copy of i.
 
@@ -1287,7 +1284,7 @@ Eg)
 // storing anonymous function
 `arr[i] = function () { return i; }`\
 `}`\
-    `return arr;`// returning the array \
+ `return arr;`// returning the array \
 `}`
 
 `let get_arr = outer();`
@@ -1296,3 +1293,81 @@ Eg)
 `console.log(get_arr[1]());`\
 `console.log(get_arr[2]());`\
 `console.log(get_arr[3]());`
+
+- Using private variables and methods: In JavaScript, we can use private variables and methods using closures. The example below shows the use of private variables with closure.
+
+Example: In this example, the rentPrice() function returns an object with three methods: getRent(), incRent(), and decRent(). These three methods has access to the private variable rent. However, the code outside its scope cannot directly access this variable. Hence, we can mimic object oriented programming in JavaScript.
+
+`var rentPrice = function(initialRent) {`
+` var rent = initialRent;`
+// Define private variables for
+// the closure
+` return {`
+` getRent: function() {`
+` return console.log(rent);`
+`},`
+` incRent: function(amount) {`
+` rent += amount;`
+` console.log(rent);`
+` },`
+`decRent: function(amount) {`
+`rent -= amount;`
+` console.log(rent);`
+`}`
+`}`
+`}`
+
+`var Rent = rentPrice(8000);`
+
+// Access the private methods
+`Rent.incRent(2000);   //10000`
+`Rent.decRent(1500);   //8500`
+`Rent.decRent(1000);  //7500`
+`Rent.incRent(2000);  //9500`
+`Rent.getRent();      //9500`
+
+* Maintaining state between each function call: Suppose there is a function and one would like it to multiply multiple values together. This could be done with the help of a global variable as they are accessible throughout the program. However, a drawback is that they are prone to change from anywhere in the code. This can be done alternatively using closures. Closures help in maintaining the state between function calls without using a global variable.
+
+
+`(function() {`
+  
+  `var multFn = function multiply() {`
+    // This variable is local to
+    // the closure and holds
+    // its value inbetween
+    // multiple calls
+   `var mult = 9;`
+   `return function(val) {`
+    ` mult = mult * val;`
+ `    return mult;`
+`   }`
+`  };`
+  
+  `var mult = multFn();`
+    
+  // Call the method
+  // multiple times
+ ` console.log(mult(2));  //18`
+`  console.log(mult(3));  //54`
+`  console.log(mult(5)); //270`
+`}());`
+
+* Adder function
+
+`function makeAdder(x) {`
+`  return function (y) {`
+ `   return x + y;`
+ ` };`
+`}`
+
+`const add5 = makeAdder(5);`
+`const add10 = makeAdder(10);`
+
+`console.log(add5(2)); // 7`
+`console.log(add10(2)); // 12`
+
+In this example, we have defined a function makeAdder(x), that takes a single argument x, and returns a new function. The function it returns takes a single argument y, and returns the sum of x and y.
+
+In essence, makeAdder is a function factory. It creates functions that can add a specific value to their argument. In the above example, the function factory creates two new functions—one that adds five to its argument, and one that adds 10.
+
+add5 and add10 both form closures. They share the same function body definition, but store different lexical environments. In add5's lexical environment, x is 5, while in the lexical environment for add10, x is 10.
