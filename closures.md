@@ -381,7 +381,7 @@ Eg)
 `var a=10;`\
 `let b=20;`\
 `const c=30;`\
-`}`\
+`}`
 
 Block- a  
 Script- b,c
@@ -673,9 +673,9 @@ We can use this example to explain closures, as follows:
 `return trashBags.pop();`\
 `}`\
 `};`\
-`}`\
+`}`
 
-`var kitchen = makeKitchen();`\
+`var kitchen = makeKitchen();`
 
 `console.log(kitchen.getTrashBag()); // returns trash bag C`\
 `console.log(kitchen.getTrashBag()); // returns trash bag B`\
@@ -1149,7 +1149,7 @@ Eg)
 `const add = (function () {`\
 `let count = 0;`\
 `return function () {count += 1; return count}`\
-`})();`\
+`})();`
 
 `add(); //1`\
 `add(); //2`\
@@ -1298,73 +1298,72 @@ Eg)
 
 Example: In this example, the rentPrice() function returns an object with three methods: getRent(), incRent(), and decRent(). These three methods has access to the private variable rent. However, the code outside its scope cannot directly access this variable. Hence, we can mimic object oriented programming in JavaScript.
 
-`var rentPrice = function(initialRent) {`
-` var rent = initialRent;`
+`var rentPrice = function(initialRent) {`\
+` var rent = initialRent;`\
 // Define private variables for
 // the closure
-` return {`
-` getRent: function() {`
-` return console.log(rent);`
-`},`
-` incRent: function(amount) {`
-` rent += amount;`
-` console.log(rent);`
-` },`
-`decRent: function(amount) {`
-`rent -= amount;`
-` console.log(rent);`
-`}`
-`}`
+` return {`\
+` getRent: function() {`\
+` return console.log(rent);`\
+`},`\
+` incRent: function(amount) {`\
+` rent += amount;`\
+` console.log(rent);`\
+` },`\
+`decRent: function(amount) {`\
+`rent -= amount;`\
+` console.log(rent);`\
+`}`\
+`}`\
 `}`
 
-`var Rent = rentPrice(8000);`
+`var Rent = rentPrice(8000);`\
 
 // Access the private methods
-`Rent.incRent(2000);   //10000`
-`Rent.decRent(1500);   //8500`
-`Rent.decRent(1000);  //7500`
-`Rent.incRent(2000);  //9500`
-`Rent.getRent();      //9500`
+`Rent.incRent(2000);   //10000`\
+`Rent.decRent(1500);   //8500`\
+`Rent.decRent(1000);  //7500`\
+`Rent.incRent(2000);  //9500`\
+`Rent.getRent();      //9500`\
 
 * Maintaining state between each function call: Suppose there is a function and one would like it to multiply multiple values together. This could be done with the help of a global variable as they are accessible throughout the program. However, a drawback is that they are prone to change from anywhere in the code. This can be done alternatively using closures. Closures help in maintaining the state between function calls without using a global variable.
 
 
-`(function() {`
-  
-  `var multFn = function multiply() {`
+`(function() {`\
+  `var multFn = function multiply() {`\
     // This variable is local to
     // the closure and holds
     // its value inbetween
     // multiple calls
-   `var mult = 9;`
-   `return function(val) {`
-    ` mult = mult * val;`
- `    return mult;`
-`   }`
-`  };`
+   `var mult = 9;`\
+   `return function(val) {`\
+    ` mult = mult * val;`\
+ `    return mult;`\
+`   }`\
+`  };`\
   
-  `var mult = multFn();`
+  `var mult = multFn();`\
     
   // Call the method
   // multiple times
- ` console.log(mult(2));  //18`
-`  console.log(mult(3));  //54`
-`  console.log(mult(5)); //270`
+ ` console.log(mult(2));  //18`\
+`  console.log(mult(3));  //54`\
+`  console.log(mult(5)); //270`\
 `}());`
 
 * Adder function
 
-`function makeAdder(x) {`
-`  return function (y) {`
- `   return x + y;`
- ` };`
-`}`
+`function makeAdder(x) {`\
+`  return function (y) {`\
+ `   return x + y;`\
+ ` };`\
+`}`\
 
-`const add5 = makeAdder(5);`
-`const add10 = makeAdder(10);`
+`const add5 = makeAdder(5);`\
+`const add10 = makeAdder(10);`\
 
-`console.log(add5(2)); // 7`
-`console.log(add10(2)); // 12`
+`console.log(add5(2)); // 7`\
+`console.log(add10(2)); // 12`\
 
 In this example, we have defined a function makeAdder(x), that takes a single argument x, and returns a new function. The function it returns takes a single argument y, and returns the sum of x and y.
 
