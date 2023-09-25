@@ -14,12 +14,12 @@ These callback functions are very powerful in JS. It gives access to whole async
 It can do only one thing at a time & in a specific order but due to callbacks we can do async things in JS.
 
 Eg:
-`function x(y){`\
+`function x(y){`
 
 `}`\
-`x(function y(){`\
+`x(function y(){`
 
-`});`\
+`});`
 
 Eg:
 `function multiply(a,b){`\
@@ -32,12 +32,16 @@ Eg:
 `var squared = square (n);`\
 `console.log(squared);`\
 `}`\
-`printSquare(4);`\
+`printSquare(4);`
 
 * Stack 
+
 multiply(a,b)
+
 square (n)
+
 printSquare(4)
+
 main()
 
 So if you run this run this file, there's kind of a main function right, like the file itself, so, we push that on to the stack. Then we have some function definitions, they're just like defining the state of the world, and finally we got to print square, right so print square is a function call, so we push that on to the stack, and immediately inside print square, push on to the stack, which calls multiply, now we have a return statement, we multiply A and B and we return,
@@ -45,9 +49,13 @@ when we return we pop something off the stack, so pop, multiplier of the stack, 
 like the visualization of the call stack
 
 * Stack 
+
 multiply(a,b)-popoff
+
 square (n) -popoff
+
 printSquare(4) -popoff
+
 main()-popoff
 
 Eg:
@@ -60,7 +68,7 @@ Eg:
 `function baz(){`\
   `  bar();`\
 `}`\
-`baz();`\
+`baz();`
 
 When you are doing browser-side-development so if we have code like this, a function baz which calls bar, which calls foo which throws error if we run it in Chrome we see this. 
 
@@ -69,7 +77,7 @@ When you are doing browser-side-development so if we have code like this, a func
 `foo`\
 `bar`\
 `baz`\
-`(anonyous function)`\
+`(anonyous function)`
 
 And it prints the stack trace, right, the state of the stack when that error happened, so uncaught error oops foo, bar, baz and anonyous function, which is our main. Have a function foo hich calls foo, so what's going to happen ? We have a function main 
 
@@ -79,14 +87,14 @@ Eg:
 `function foo(){`\
     `return foo();`\
 `}`\
-`foo();`\
+`foo();`
 
 Stack :
 infinite loop
 `foo()`\
 `foo()`\
 `foo()`\
-`main()`\
+`main()`
 
 O/P- RangeError: Maximum call stack size exceeded.
 
@@ -106,11 +114,11 @@ Eg:
 `}`\
 `x(function y(){`\
  `console.log("y");`\
-`});`\
+`});`
 
 `O/P - x`\
 `y `\
-`timer`\
+`timer`
 
 So now lets see how this program is executed and what O/P it will give. So as JS is a synchronous single threaded language that means code will be executed one line at a time & in order. First Thing will happpen is registering a setTimeout so setTimeout will take this callback function & store in a separate space & will attach a timer to it of 5000ms & store it.
 We already know JS will not wait for setTimeout to finish over here. So callback functions gives us the power of asynchronousity. It does not wait over here for 5000ms to expire and whatever needs to be done after 5000 seconds we are passing that feature or that piece of code or those lines of code as a callback function to setTimeout. JS waits for none.
@@ -142,8 +150,8 @@ So if JS didn't have this first class functions & we didn't have this callback f
 Eg
 `<button id="clickMe">Click Me</button>`\
 `document.getElementById("clickMe").addEventListener("click", functon xyz(){`\
- `console.log("Button Clicked");`\  
-`})`\
+ `console.log("Button Clicked");` 
+`})`
 
 xyz() will come inside the callback
 
@@ -161,7 +169,7 @@ O) Suppose if we have to count how many times the button is clicked& if we have 
   `Button clicked 1`\
   `Button clicked 2`\
   `Button clicked 3`\
-  `Button clicked 4`\
+  `Button clicked 4`
 
 Using a global Variable sis not a good solution.
 Eg:
@@ -171,7 +179,7 @@ Eg:
  `console.log("Button Clicked", ++count);`\  
  ` })`\
 `}`\
-`addEventListener();`\
+`addEventListener();`
 
 Callback function xyz() is formimg a closure with it outside scope. So this xyz() is forming a closure with it outside scope. So this xyz() has access to its closures.
 Handler is a callaback function:--> f xyz() ;
@@ -179,7 +187,7 @@ Scope is lexical scope that the function carries. in case of browser its window
 `Global {window}`\
 `Closure (addEventListener){`\
  `count :0;`\
-`}`\
+`}`
 
 # Garbage Collection & remove Event Listeners
 
@@ -197,7 +205,7 @@ Eg:
 `a();`\
 `console.log("End");`\
 `O/P- a is called `\
-`End`\
+`End`
 
 First of all when any JS program is run a global execution context is created. Global execution context is created & pushed inside call stack. In Global execution context this whole code will run line by line. Function definition of 'a'. So a will allocate memory and this function will be stored. a() function invocation.
 In case of functon invocation a execution context is created for function 'a' to execute this function & execution context is again pushed inside call stack. It sees that there is nothing more to be executed inside 'a'. So it pops out this a() execution context out of the call stack. a() execution context is deleted. Global execution context pops out of the call stack.
@@ -230,15 +238,15 @@ Eg:
 `setTimeout(function cb(){`\
 ` console.log("callback");`\
 `}, 5000);`\
-`console.log("end");`\
+`console.log("end");`
 
 - console
   `start`\
   `end`\
-  `callback`\
+  `callback`
 
 - Web APIs
-  `cb() timer for 5000ms start`\
+  `cb() timer for 5000ms start`
 
 Global execution context is pops out of the call stack but this timer is still running. As soon as timer expires this callback (cb) function needs to be executed.
 And we know all the code in JS is executed inside Call Stack. So we somehow need this cb() function inside Call Stack. But it cannot directly go inside call stack.
@@ -266,14 +274,17 @@ Eg:
 `setTimeout(function cb(){`\
 ` console.log("there");`\
 `}, 0);`\
-`console.log("JSconfEU");`\
+`console.log("JSconfEU");`
 
 setTimeout zero. The reason is, generally, if you're trying to defer something until the stack is clear. So we know looking at this, if you've written JS, that we're going to see the same result, we're going to see "Hi", "JSconfEU","there" is going to appear at the end. The setTimeouT zero, now t's going to complete immediately and push it on the queue, remember what i said about event loop, it has to wait till the stack is clear before it can push the callback into the stack, so your stack is going to continue to run console.log "Hi", "JSconfEU" and clear, now the vent loop can kick in 
 and call your callback. That's like an example of setTimeout zero, is deferring that execution of code to zero for whatever reason to the end of the stack or until the stack is clear.
 
 *stack
+
 main()
+
 setTimeout(cb);
+
 JSconfEU
 
 * console 
@@ -296,7 +307,7 @@ Eg:
 `document.getElementById("btn").addEventListener("click",function cb(){`\
  `console.log("callback");`\
 `});`\
-`console.log("end");`\
+`console.log("end");`
 
 * console 
   start
@@ -335,22 +346,25 @@ Eg:
 `}, 5000);`\
 `fetch("https://api.netflix.com").then(function cbF(){`\
 `console.log("CB Netflix"); ` \
-`});`\
-
----
-
----
-
-`//many lines of code `
+`});`
+`//many lines of code `\
 `console.log("end");`
 
-- console _ Web APIs
-  start cbT(), cbF()
+- console
+  start
   end
   CB Netflix  
-  Cb SetTimeout  
-   _ event-loop _ microtask queues (cbF)
-  _ callback queue (cbT)
+  Cb SetTimeout 
+
+- Web APIs
+
+  cbT(), cbF() 
+
+-  event-loop
+
+- microtask queues (cbF)
+
+- callback queue (cbT)
 
 Fetch() to make network call. Fetch basically goes & request a API call. Fetch returns a promise & we have to call a callback function which will be executed once this Promise is resolved.
 This cbT() function s waiting for this timer to expire.

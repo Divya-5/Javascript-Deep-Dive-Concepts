@@ -6,7 +6,7 @@
     ` function a(){`\
      `console.log("a is called");`\
      `}`\
-     `a();`\
+     `a();`
 
 - 2. Function expression
      Functon acts like a value. Initializing b with a value. Putting function into b.
@@ -14,19 +14,20 @@
      `var b= function (){`\
      `console.log("b is called");` \
     ` }`\
-     `b();`\
+     `b();`
 
-1 & 2 both are ways of creating a function. Major Difference b/w 1 & 2 is Hoisting.
+i & ii both are ways of creating a function. Major Difference b/w i & ii is Hoisting.
+
 Eg :
 `a(); //Returns function a `\
 `b(); // Uncaught TypeError: b is not a function`\
 `function a(){`\
 `console.log("a is called");`\
-`}`\
+`}`
 
 `var b= function(){`\
 `console.log("b is called");`  \
-`}`\
+`}`
 
 * What if I call this a() and b() even before creating it. During hoisting or memory creation phase a is creating a memory & this function is assigned to a.
 * But in case of function expression this b is treated like any other variable. It is assigned undefined initially until the line code hits the line hits itself. So when the JS Engine executes this line by line & it reaches this line then only function is assigned to this variable b until then it is undefined and you cannot call that b.
@@ -35,10 +36,10 @@ Eg :
 A function without a name is known as anonymous function. They don't have their own identiy.
 
 Eg:
-`function (){`\
+`function (){`
 
 `}`\
-`O/P- // Uncaught SyntaxError: function statements require a function name`\
+`O/P- // Uncaught SyntaxError: function statements require a function name`
 
 Result out to be Syntax error. Anonymous function looks similar function statement but it has no name. But according to EcmaScript Specification a function statement should always have a name. So this is invalid syntax.
 
@@ -49,7 +50,7 @@ Result out to be Syntax error. Anonymous function looks similar function stateme
   `var b= function (){`\
  ` console.log("b is called");  `\
   `}`\
- ` b();`\
+ ` b();`
 
 # Named Function Expression
 In function expression instead of using a anonymous function we use a function with a name.
@@ -59,7 +60,7 @@ Eg:
 `console.log("b is called");`\
 `}`\
 `b(); // b is called`\
-`xyz(); // Uncaught ReferenceError: xyz is not defined`\
+`xyz(); // Uncaught ReferenceError: xyz is not defined`
 
 This is a corner case. So this xyz() is not created in outer scope, xyz is not a function in Global Space (outer scope). But it is created as a local variable.
 
@@ -69,7 +70,7 @@ Eg:
 `}`\
 `O/P- f xyz(){`\
 `console.log(xyz);`\
-`}`\
+`}`
 
 # Difference b/w Parameters and Arguments
 Lots of programmers use parameters and arguments interchangeably. But they are very different.
@@ -78,7 +79,7 @@ Eg:
 `var b= function xyz(param1, param2){`\
 `console.log("b is called");  `\
 `}`\
-`b(1,2)`\
+`b(1,2)`
 
 param1, param2- Parameters/ Identifiers/ Labels. These Identifiers/ Labels that get those values are known as Parameter.This is local variable in the function scope. You can't access param1, param2 outside. These are parameters.
  
@@ -95,9 +96,9 @@ Eg:
 `b(function(){ // Passing a function inside another function`\
 
 `});`\
-`O/P- f(){`\
+`O/P- f(){`
 
-`}`\
+`}`
 
 Eg:
 `var b= function(param1){`\
@@ -107,30 +108,30 @@ Eg:
 
 `};`\
 `b(xyz); // Passing a function inside another function`\
-`O/P- f(){`\
+`O/P- f(){`
     
-`}`\
+`}`
 
 If we pass this function into this function we can also return the function from a function.
 
 Eg:
 `var b= function(param1){`\
-`return function (){ // Anonymous function was returned from b -> b();`\
+`return function (){ // Anonymous function was returned from b -> b();`
 
 `}`\
 `}`\
 `console.log(b());`\
-`O/P- f(){`\
+`O/P- f(){`
     
-`}`\
+`}`
 
 Eg:
-`var b= function(param1){`
+`var b= function(param1){`\
 `return function xyz(){ // Anonymous function was returned from b -> b();`
 
-`}`
-`}`
-`console.log(b());`
+`}`\
+`}`\
+`console.log(b());`\
 `O/P- f xyz(){`
     
 `}`
