@@ -24,7 +24,7 @@ It has 2 components in it.
 - Creation Phase (Memory Creation Phase)
 - Code Execution Phase
 
-Eg:
+Eg)
 
 `var n=5;` \
 `function cube(num){` \
@@ -300,7 +300,7 @@ Eg)
 `console.log(a);// 10`
 Valid and possible in let
 
-Eg)\
+Eg)
 
 `const a;`\
 `a=10;`\
@@ -318,7 +318,8 @@ Eg)
 # Difference between reference error and syntax error and type error.
 
 - Reference Error: When JS engine tries to find a specific variable inside the memory space & you cannot access it.
-  Eg)\
+
+  Eg)
 
 `console.log(a); //TDZ`\
  `let a=1000;`\
@@ -660,7 +661,9 @@ Eg)
 - Every function creates a closure because every function has a link to its outer lexical environment.
 - Note that variables themselves are visible from within a closure, not copies.
 
-Eg) If you say to your child, "Go to the kitchen and get me a trash bag" they will be able to remember that direction.
+Eg)
+
+ If you say to your child, "Go to the kitchen and get me a trash bag" they will be able to remember that direction.
 We can use this example to explain closures, as follows:
 
 - The kitchen is a closure that has a local variable, called trashBags. There is a function inside the kitchen called
@@ -1296,7 +1299,7 @@ Eg)
 
 - Using private variables and methods: In JavaScript, we can use private variables and methods using closures. The example below shows the use of private variables with closure.
 
-Example: In this example, the rentPrice() function returns an object with three methods: getRent(), incRent(), and decRent(). These three methods has access to the private variable rent. However, the code outside its scope cannot directly access this variable. Hence, we can mimic object oriented programming in JavaScript.
+Eg) In this example, the rentPrice() function returns an object with three methods: getRent(), incRent(), and decRent(). These three methods has access to the private variable rent. However, the code outside its scope cannot directly access this variable. Hence, we can mimic object oriented programming in JavaScript.
 
 `var rentPrice = function(initialRent) {`\
 ` var rent = initialRent;`\

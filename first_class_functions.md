@@ -2,7 +2,9 @@
 
 - 1. Function statememt/ Function Declaration
      Function Statement is also known as a function declaration.
-     Eg:
+
+     Eg)
+
     ` function a(){`\
      `console.log("a is called");`\
      `}`\
@@ -10,7 +12,9 @@
 
 - 2. Function expression
      Functon acts like a value. Initializing b with a value. Putting function into b.
-     Eg:
+
+     Eg)
+
      `var b= function (){`\
      `console.log("b is called");` \
     ` }`\
@@ -18,7 +22,8 @@
 
 i & ii both are ways of creating a function. Major Difference b/w i & ii is Hoisting.
 
-Eg :
+Eg)
+
 `a(); //Returns function a `\
 `b(); // Uncaught TypeError: b is not a function`\
 `function a(){`\
@@ -35,7 +40,8 @@ Eg :
 # What is an anonymous function ?
 A function without a name is known as anonymous function. They don't have their own identiy.
 
-Eg:
+Eg)
+
 `function (){`
 
 `}`\
@@ -46,7 +52,8 @@ Result out to be Syntax error. Anonymous function looks similar function stateme
 - Use of Anonymous function
   They are used in a place where the functions are used as values. You can use it to assign it to some variable.
 
-  Eg:
+  Eg)
+  
   `var b= function (){`\
  ` console.log("b is called");  `\
   `}`\
@@ -55,7 +62,8 @@ Result out to be Syntax error. Anonymous function looks similar function stateme
 # Named Function Expression
 In function expression instead of using a anonymous function we use a function with a name.
 
-Eg:
+Eg)
+
 `var b= function xyz(){`\
 `console.log("b is called");`\
 `}`\
@@ -64,7 +72,8 @@ Eg:
 
 This is a corner case. So this xyz() is not created in outer scope, xyz is not a function in Global Space (outer scope). But it is created as a local variable.
 
-Eg:
+Eg)
+
 `var b= function xyz(){`\
 `console.log(xyz);  `\
 `}`\
@@ -75,7 +84,8 @@ Eg:
 # Difference b/w Parameters and Arguments
 Lots of programmers use parameters and arguments interchangeably. But they are very different.
 
-Eg:
+Eg)
+
 `var b= function xyz(param1, param2){`\
 `console.log("b is called");  `\
 `}`\
@@ -89,7 +99,8 @@ Arguments - The values which we pass inside a function is known as arguments.
 # First Class Functon /  First Class Citizens
 Instead of b(1,2) these arguments(1,2) we can pass a function inside another functions as Arguments. Functions are treated like values. 
 
-Eg:
+Eg)
+
 `var b= function(param1){`\
 `console.log(param1); `\
 `}`\
@@ -100,7 +111,8 @@ Eg:
 
 `}`
 
-Eg:
+Eg)
+
 `var b= function(param1){`\
 `console.log(param1); `\
 `}`\
@@ -114,7 +126,8 @@ Eg:
 
 If we pass this function into this function we can also return the function from a function.
 
-Eg:
+Eg)
+
 `var b= function(param1){`\
 `return function (){ // Anonymous function was returned from b -> b();`
 
@@ -125,7 +138,8 @@ Eg:
     
 `}`
 
-Eg:
+Eg)
+
 `var b= function(param1){`\
 `return function xyz(){ // Anonymous function was returned from b -> b();`
 

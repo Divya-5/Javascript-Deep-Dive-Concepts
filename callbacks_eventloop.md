@@ -13,7 +13,8 @@ These callback functions are very powerful in JS. It gives access to whole async
 
 It can do only one thing at a time & in a specific order but due to callbacks we can do async things in JS.
 
-Eg:
+Eg)
+
 `function x(y){`
 
 `}`\
@@ -21,7 +22,8 @@ Eg:
 
 `});`
 
-Eg:
+Eg)
+
 `function multiply(a,b){`\
 `return a*b;`\
 `}`\
@@ -58,7 +60,8 @@ printSquare(4) -popoff
 
 main()-popoff
 
-Eg:
+Eg)
+
 `function foo (){`\
     `throw new Error('Oops');`\
 `}`\
@@ -83,28 +86,35 @@ And it prints the stack trace, right, the state of the stack when that error hap
 
 Equally, if you've heard the term like blowing the stack, this is an example of that.
 
-Eg:
+Eg)
+
 `function foo(){`\
     `return foo();`\
 `}`\
 `foo();`
 
 Stack :
-infinite loop
-`foo()`\
-`foo()`\
-`foo()`\
+
+//infinite loop
+`foo()`
+
+`foo()`
+
+`foo()`
+
 `main()`
 
 O/P- RangeError: Maximum call stack size exceeded.
 
 You call this function sometime else in your code. You give this responsibility of the function another function. Now it is upto x when it wants to call y.
 
-Eg:
+Eg)
+
 `setTimeout(function (){}, 5000);`\
 SetTimeout takes a callback function. It is passed to setTimeout & called sometime later in your program (second argument) is time.
 
-Eg:
+Eg)
+
 `setTimeout(function (){`\
 `console.log("timer");`\
 `}, 5000);`\
@@ -133,7 +143,7 @@ Suppose if this function x has a very heavy operation it takes around 20-30secon
 # What happens when things are slow?
 Blocking - code that is slow
 console.log is not slow 
-Eg: while loop from 1 to billion is slow, network requests, image requests are slow
+Eg) while loop from 1 to billion is slow, network requests, image requests are slow
 
 Things which are slow and on that stack are what are blocking means.
 The problem is because we are running are code in the browsers. Browsers don't give us -- well they do give us synchronous AJAX request but id we use while request which is synchronous. If we request something, i can't do anything. The browser is blocked, it's stuck , it can't do anything until those requests complete. That's because if that call stack has things on it. We've got the synchronous request, the browsers can't do anything else. It can't render, it can't run any other code,it's stuck. Not ideal, right if we want people to have nice fluid UIs, we can't block the stack.
@@ -148,6 +158,7 @@ So if JS didn't have this first class functions & we didn't have this callback f
 # Deep Dive into Event Listeners
 
 Eg
+
 `<button id="clickMe">Click Me</button>`\
 `document.getElementById("clickMe").addEventListener("click", functon xyz(){`\
  `console.log("Button Clicked");` 
@@ -160,7 +171,9 @@ xyz() will come inside the callback
 O) Suppose if we have to count how many times the button is clicked& if we have to print that.
 
 - Global Variable
-  Eg:
+
+  Eg)
+
   ` let count=0;`\
   ` document.getElementById("clcikMe).addEventListener("Click",function xyz(){`\
   `     console.log("Button clciked", ++count);`\
@@ -172,7 +185,9 @@ O) Suppose if we have to count how many times the button is clicked& if we have 
   `Button clicked 4`
 
 Using a global Variable sis not a good solution.
-Eg:
+
+Eg)
+
 `function addEventListeners(){`\
 `    let count=0;`\
  `document.getElementById("clickMe").addEventListener("click", function xyz(){`\
@@ -184,6 +199,7 @@ Eg:
 Callback function xyz() is formimg a closure with it outside scope. So this xyz() is forming a closure with it outside scope. So this xyz() has access to its closures.
 Handler is a callaback function:--> f xyz() ;
 Scope is lexical scope that the function carries. in case of browser its window
+
 `Global {window}`\
 `Closure (addEventListener){`\
  `count :0;`\
@@ -198,7 +214,8 @@ All these variables which wee held by closures will be garbage collected.
 # Asynchronous JS and Event Loop
 JS is a synchronous single threaded language. It has one call stack and it can do only one thing at a time. This callStack is present inside the JS Engine and all the code of JS is executed inside the call stack.
 
-Eg:
+Eg)
+
 `function a(){`\
  `console.log("a is called");`\
 `}`\
@@ -233,7 +250,8 @@ window.console.log() === console.log()
 
 Because window is Global Object and setTimeout present inside window object or at the global scope.
 
-Eg:
+Eg)
+
 `console.log("start");`\
 `setTimeout(function cb(){`\
 ` console.log("callback");`\
@@ -269,7 +287,8 @@ Job of Event Loop is to check this callabck queue has some function and puts thi
 
 That's true that JS Runtime can only do one thing at one time. It can't make AJAX request while you're doing other code. It can't do a setTimeout while you're doing another code. The reason we can do things concurrently is that the browser is more than just the Runtime. 
 
-Eg:
+Eg)
+
 `console.log("Hi");`\
 `setTimeout(function cb(){`\
 ` console.log("there");`\
@@ -302,7 +321,8 @@ there
 
 That's like an example of setTimeout zero, is deferring that execution of code, for, whatever reason to the end of the stack or until the stack is clear.
 
-Eg:
+Eg)
+
 `console.log("start");`\
 `document.getElementById("btn").addEventListener("click",function cb(){`\
  `console.log("callback");`\
@@ -339,7 +359,8 @@ There are lot of eventListener & lot of things happening inside the browser (a l
 - How fetch() works ?
   It behaves differently from setTimeout & eventListener.
 
-Eg:
+Eg)
+
 `console.log("start");`\
 `setTimeout(function cbT(){`\
 `    console.log("CB SetTimeout");`\
