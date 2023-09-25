@@ -20,31 +20,31 @@ Eg:
 // or 'apply' and 'this' will be bound to it.
 `const obj = { a: "Custom" };`\
 
-// Variables declared with var become properties of 'globalThis'.
-`var a = "Global";`\
+// Variables declared with var become properties of 'globalThis'\
+`var a = "Global";`
 
 `function whatsThis() {`\
   `return this.a; // 'this' depends on how the function is called`\
-`}`\
+`}`
 
 `whatsThis(); // 'Global'; the 'this' parameter defaults to 'globalThis' in non–strict mode`\
 `obj.whatsThis = whatsThis;`\
-`obj.whatsThis(); // 'Custom'; the 'this' parameter is bound to obj`\
+`obj.whatsThis(); // 'Custom'; the 'this' parameter is bound to obj`
 
 Eg:
 `function add(c, d) {`\
 `  return this.a + this.b + c + d;`\
-`}`\
+`}`
 
 `const o = { a: 1, b: 3 };`\
 
 // The first argument is bound to the implicit 'this' parameter; the remaining
 // arguments are bound to the named parameters.
-`add.call(o, 5, 7); // 16`\
+`add.call(o, 5, 7); // 16`
 
 // The first argument is bound to the implicit 'this' parameter; the second
 // argument is an array whose members are bound to the named parameters.
-`add.apply(o, [10, 20]); // 34`\
+`add.apply(o, [10, 20]); // 34`
 
 
 For a typical function, the value of this is the object that the function is accessed on. In other words, if the function call is in the form obj.f(), then this refers to obj. 
@@ -52,16 +52,16 @@ For a typical function, the value of this is the object that the function is acc
 Eg:
 `function getThis() {`\
 `  return this;`\
-`}`\
+`}`
 
 `const obj1 = { name: "obj1" };`\
-`const obj2 = { name: "obj2" };`\
+`const obj2 = { name: "obj2" };`
 
 `obj1.getThis = getThis;`\
-`obj2.getThis = getThis;`\
+`obj2.getThis = getThis;`
 
 `console.log(obj1.getThis()); // { name: 'obj1', getThis: [Function: getThis] }`\
-`console.log(obj2.getThis()); // { name: 'obj2', getThis: [Function: getThis] }`\
+`console.log(obj2.getThis()); // { name: 'obj2', getThis: [Function: getThis] }`
 
 Note how the function is the same, but based on how it's invoked, the value of this is different. This is analogous to how function parameters work.
 The value of this is not the object that has the function as an own property, but the object that is used to call the function. 
@@ -71,9 +71,9 @@ Eg:
 `const obj3 = {`\
 `  __proto__: obj1,` \
 `  name: "obj3",`\
-`};`\
+`};`
 
-`console.log(obj3.getThis()); // { name: 'obj3' }`\
+`console.log(obj3.getThis()); // { name: 'obj3' }`
 
 The value of this always changes based on how a function is called, even when the function was defined on an object at creation:
 
@@ -83,12 +83,12 @@ Eg:
 `  getThis() {`\
 `    return this;`\
 `  },`\
-`};`\
+`};`
 
-`const obj5 = { name: "obj5" };`\
+`const obj5 = { name: "obj5" };`
 
 `obj5.getThis = obj4.getThis;`\
-`console.log(obj5.getThis()); // { name: 'obj5', getThis: [Function: getThis] }`\
+`console.log(obj5.getThis()); // { name: 'obj5', getThis: [Function: getThis] }`
 
 If the value that the method is accessed on is a primitive, this will be a primitive value as well — but only if the function is in strict mode.
 
@@ -96,11 +96,11 @@ Eg:
 `function getThisStrict() {`\
 `  "use strict"; // Enter strict mode`\
 `  return this;`\
-`}`\
+`}`
 
 `// Only for demonstration — you should not mutate built-in prototypes`\
 `Number.prototype.getThisStrict = getThisStrict;`\
-`console.log(typeof (1).getThisStrict()); // "number"`\
+`console.log(typeof (1).getThisStrict()); // "number"`
 
 If the function is called without being accessed on anything, this will be undefined — but only if the function is in strict mode.
 
@@ -109,7 +109,7 @@ Eg:
 `  "use strict"; // Enter strict mode`\
 `  return this;`\
 `}`\
-`console.log(typeof getThisStrict()); // "undefined"`\
+`console.log(typeof getThisStrict()); // "undefined"`
 
 In non-strict mode, a special process called this substitution ensures that the value of this is always an object. This means:
 * If a function is called with this set to undefined or null, this gets substituted with globalThis.
@@ -118,12 +118,12 @@ In non-strict mode, a special process called this substitution ensures that the 
 Eg:
 `  function getThis() {`\
 `  return this;`\
-`}`\
+`}`
 
 `// Only for demonstration — you should not mutate built-in prototypes`\
 `Number.prototype.getThis = getThis;`\
 `console.log(typeof (1).getThis()); // "object"`\
-`console.log(getThis() === globalThis); // true`\
+`console.log(getThis() === globalThis); // true`
 
 # Callbacks
 When a function is passed as a callback, the value of this depends on how the callback is called.Callbacks are typically called with a this value of undefined (calling it directly without attaching it to any object), which means if the function is non–strict, the value of this is the global object (globalThis). This is the case for iterative array methods, the Promise() constructor, etc.
@@ -131,10 +131,10 @@ Eg:
 `function logThis() {`\
 `  "use strict";`\
 `  console.log(this);`\
-`}`\
+`}`
 
-`[1, 2, 3].forEach(logThis); // undefined, undefined, undefined`\
-`[1, 2, 3].forEach(logThis, { name: "obj" }); // { name: 'obj' }, { name: 'obj' }, { name: 'obj' }`\
+`[1, 2, 3].forEach(logThis); // undefined, undefined, undefined`
+`[1, 2, 3].forEach(logThis, { name: "obj" }); // { name: 'obj' }, { name: 'obj' }, { name: 'obj' }`
 
 # Arrow functions
 Arrow functions are special: they don’t have their “own” this. If we reference this from such a function, it’s taken from the outer “normal” function.
@@ -147,9 +147,9 @@ Eg:
 `    let arrow = () => alert(this.firstName);`\
  `   arrow();`\
 `  }`\
-`};`\
+`};`
 
-`user.sayHi(); // Ilya`\
+`user.sayHi(); // Ilya`
 
 That’s a special feature of arrow functions, it’s useful when we actually do not want to have a separate this, but rather to take it from the outer context.
 
@@ -159,7 +159,7 @@ For example, in global code, this is always globalThis regardless of strictness,
 Eg:
 `const globalObject = this;`\
 `const foo = () => this;`\
-`console.log(foo() === globalObject); // true`\
+`console.log(foo() === globalObject); // true`
 
 Arrow functions create a closure over the this value of its surrounding scope, which means arrow functions behave as if they are "auto-bound" — no matter how it's invoked, this is bound to what it was when the function was created (in the example above, the global object). The same applies to arrow functions created inside other functions: their this remains that of the enclosing lexical context.
 
@@ -167,11 +167,11 @@ Eg:
 `const obj = { name: "obj" };`\
 
 `// Attempt to set this using call`\
-`console.log(foo.call(obj) === globalObject); // true`\
+`console.log(foo.call(obj) === globalObject); // true`
 
 `// Attempt to set this using bind`\
 `const boundFoo = foo.bind(obj);`\
-`console.log(boundFoo() === globalObject); // true`\
+`console.log(boundFoo() === globalObject); // true`
 
 # Constructors
 When a function is used as a constructor (with the new keyword), its this is bound to the new object being constructed, no matter which object the constructor function is accessed on. The value of this becomes the value of the new expression unless the constructor returns another non–primitive value.
@@ -179,18 +179,18 @@ When a function is used as a constructor (with the new keyword), its this is bou
 Eg:
 `function C() {`\
 `  this.a = 37;`\
-`}`\
+`}`
 
 `let o = new C();`\
-`console.log(o.a); // 37`\
+`console.log(o.a); // 37`
 
 `function C2() {`\
 `  this.a = 37;`\
 `  return { a: 38 };`\
-`}`\
+`}`
 
 `o = new C2();`\
-`console.log(o.a); // 38`\
+`console.log(o.a); // 38`
 
 In the second example (C2), because an object was returned during construction, the new object that this was bound to gets discarded. (This essentially makes the statement this.a = 37; dead code. It's not exactly dead because it gets executed, but it can be eliminated with no outside effects.)
 
@@ -200,13 +200,13 @@ Eg:
 `let user = {`\
 `  name: "John",`\
 `  age: 30`\
-`};`\
+`};`
 
 `user.sayHi = function() {`\
 `  alert("Hello!");`\
-`};`\
+`};`
 
-`user.sayHi(); // Hello!`\
+`user.sayHi(); // Hello!`
 
 A function that is a property of an object is called its method.
 we could use a pre-declared function as a method, like this:
@@ -215,16 +215,16 @@ Eg:
 `let user = {`\
 `  name: "John",`\
 `  age: 30`\
-`};`\
+`};`
 
-// first, declare
+// first, declare\
 `function sayHi() {`\
 `  alert("Hello!");`\
-`}`\
+`}`
 
-// then add as a method
+// then add as a method\
 `user.sayHi = sayHi;`\
-`user.sayHi(); // Hello!`\
+`user.sayHi(); // Hello!`
 
 ### Method shorthand
 
@@ -233,9 +233,9 @@ Eg:
 `  sayHi: function() {`\
 `    alert("Hello");`\
 `  }`\
-`};`\
+`};`
 
-// method shorthand looks better, right?
+// method shorthand looks better, right?\
 `user = {`\
 `  sayHi() { // same as "sayHi: function(){...}"`\
 `    alert("Hello");`\
@@ -254,7 +254,7 @@ Eg:
 `fullName : function() {` \
 ` return this.firstName + " " + this.lastName; //John Doe`\
 `}`\
-`};`\
+`};`
 
 Eg:
 `const test = {`\
@@ -262,9 +262,9 @@ Eg:
 `  func: function () {`\
   `  return this.prop;`\
 `  },`\
-`};`\
+`};`
 
-`console.log(test.func());// Expected output: 42`\
+`console.log(test.func());// Expected output: 42`
 
 It’s common that an object method needs to access the information stored in the object to do its job.
 To access the object, a method can use the this keyword.The value of this is the object “before dot”, the one used to call the method.
@@ -272,16 +272,15 @@ To access the object, a method can use the this keyword.The value of this is the
 Eg:
 `let user = {`\
 `  name: "John",`\
-`  age: 30,`\
+`  age: 30,`
 
 `  sayHi() {`\
 `    // "this" is the "current object"`\
 `    alert(this.name);`\
 `  }`\
+`};`
 
-`};`\
-
-`user.sayHi(); // John`\
+`user.sayHi(); // John`
 
 Technically, it’s also possible to access the object without this, by referencing it via the outer variable:
 
@@ -293,8 +292,7 @@ Eg:
 `  sayHi() {`\
  `   alert(user.name); // "user" instead of "this"`\
 `  }`\
-
-`};`\
+`};`
 
 But such code is unreliable. If we decide to copy user to another variable, e.g. admin = user and overwrite user with something else, then it will access the wrong object.
 
@@ -303,15 +301,15 @@ That’s demonstrated below:
 Eg:
 `let user = {`\
 `  name: "John",`\
-`  age: 30,`\
+`  age: 30,`
 
 `  sayHi() {`\
 `    alert( user.name ); // leads to an error`\
-`  }`\
+`  }`
 
 `};`\
 `let admin = user;`\
-`user = null; // overwrite to make things obvious`\
+`user = null; // overwrite to make things obvious`
 
 `admin.sayHi(); // TypeError: Cannot read property 'name' of null`\
 If we used this.name instead of user.name inside the alert, then the code would work.
@@ -328,20 +326,20 @@ The value of this is evaluated during the run-time, depending on the context. Fo
 
 Eg:
 `let user = { name: "John" };`\
-`let admin = { name: "Admin" };`\
+`let admin = { name: "Admin" };`
 
 `function sayHi() {`\
 `  alert( this.name );`\
-`}`\
+`}`
 
 `// use the same function in two objects`\
 `user.f = sayHi;`\
-`admin.f = sayHi;`\
+`admin.f = sayHi;`
 
 `// these calls have different this`\
 `// "this" inside the function is the object "before the dot"`\
 `user.f(); // John  (this == user)`\
-`admin.f(); // Admin  (this == admin)`\
+`admin.f(); // Admin  (this == admin)`
 
 `admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)`\
 
@@ -352,7 +350,7 @@ We can even call the function without an object at all:
 Eg:
 `function sayHi() {`\
 `  alert(this);`\
-`}`\
+`}`
 
 `sayHi(); // undefined`\
 In this case this is undefined in strict mode. If we try to access this.name, there will be an error.
@@ -366,13 +364,13 @@ Usually such call is a programming error. If there’s this inside a function, i
 * When used alone, this refers to the global object. Because this is running in the global scope. In a browser window the global object is [object Window]:
 
 Eg: 
-`let x = this;`\
+`let x = this;`
 
 * In strict mode, when used alone, this also refers to the global object:
 
 Eg:
 `"use strict";`\
-`let x = this;`\
+`let x = this;`
 
 # this in a Function (Default)
 * In a function, the global object is the default binding for this.
@@ -391,7 +389,7 @@ Eg:
 `"use strict";`\
 `function myFunction() {`\
 `  return this;`\
-`}`\
+`}`
 
 # this in Event Handlers
 * In HTML event handlers, this refers to the HTML element that received the event:
@@ -399,7 +397,7 @@ Eg:
 Eg: 
 `<button onclick="this.style.display='none'">`\
 `  Click to Remove Me!`\
-`</button>`\
+`</button>`
 
 # this and object conversion
 In non–strict mode, if a function is called with a this value that's not an object, the this value is substituted with an object. null and undefined become globalThis. 
@@ -411,7 +409,7 @@ Eg:
 
 `bar.call(7); // [object Number]`\
 `bar.call("foo"); // [object String]`\
-`bar.call(undefined); // [object Window]`\
+`bar.call(undefined); // [object Window]`
 
 
 # Object Method Binding
@@ -439,12 +437,12 @@ Eg:
 `  fullName: function() {`\
  `   return this.firstName + " " + this.lastName;`\
 `  }`\
-`}`\
+`}`
 
 `const person2 = {`\
 `  firstName:"John",`\
 `  lastName: "Doe",`\
-`}`\
+`}`
 
 `person1.fullName.call(person2); // Return "John Doe":`\
 
@@ -460,12 +458,12 @@ Eg:
 `  fullName: function () {`\
  `   return this.firstName + " " + this.lastName;`\
 `  }`\
-`}`\
+`}`
 
 `const member = {`\
 `  firstName:"Hege",`\
 `  lastName: "Nilsen",`\
-`}`\
+`}`
 
 `let fullName = person.fullName.bind(member); //Hege Nilsen`\
 
@@ -486,13 +484,13 @@ Eg:
 `}`\
 
 `const g = f.bind({ a: "azerty" });`\
-`console.log(g()); // azerty`\
+`console.log(g()); // azerty`
 
 `const h = g.bind({ a: "yoo" }); // bind only works once!`\
-`console.log(h()); // azerty`\
+`console.log(h()); // azerty`
 
 `const o = { a: 37, f, g, h };`\
-`console.log(o.a, o.f(), o.g(), o.h()); // 37 37 azerty azerty`\
+`console.log(o.a, o.f(), o.g(), o.h()); // 37 37 azerty azerty`
 
 Eg:
 `function makeUser() {`\
@@ -500,11 +498,11 @@ Eg:
 `    name: "John",`\
 `    ref: this`\
 `  };`\
-`}`\
+`}`
 
-`let user = makeUser();`\
+`let user = makeUser();`
 
-`alert( user.ref.name ); // Error: Cannot read property 'name' of undefined`\
+`alert( user.ref.name ); // Error: Cannot read property 'name' of undefined`
 
 That’s because rules that set this do not look at object definition. Only the moment of call matters. Here the value of this inside makeUser() is undefined, because it is called as a function, not as a method with “dot” syntax.
 The value of this is one for the whole function, code blocks and object literals do not affect it. So ref: this actually takes current this of the function.
@@ -528,9 +526,9 @@ Eg:
 `      return this;`\
 `    }`\
 `  };`\
-`}`\
+`}`
 
-`let user = makeUser();`\
+`let user = makeUser();`
 
 `alert( user.ref().name ); // John`\
 Now it works, because user.ref() is a method. And the value of this is set to the object before dot ..
@@ -548,7 +546,7 @@ Eg:
 `  showStep: function() { // shows the current step`\
 `    alert( this.step );`\
 `  }`\
-`};`\
+`};`
 
 Now, if we need to make several calls in sequence, can do it like this:
 
@@ -557,7 +555,7 @@ Now, if we need to make several calls in sequence, can do it like this:
 `ladder.down();`\
 `ladder.showStep(); // 1`\
 `ladder.down();`\
-`ladder.showStep(); // 0`\
+`ladder.showStep(); // 0`
 
 #### Calculator
 Eg:
@@ -578,7 +576,7 @@ Eg:
 `alert( calculator.mul() );`\
 
 Modify the code of up, down and showStep to make the calls chainable, like this:
-`ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0`\
+`ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0`
 
 # Summary 
 * In an object method, this refers to the object.
