@@ -816,3 +816,63 @@ Eg:
 `alert(user + 500); // toString -> John500`
 
 In the absence of Symbol.toPrimitive and valueOf, toString will handle all primitive conversions.
+
+## A conversion can return any primitive type
+
+The important thing to know about all primitive-conversion methods is that they do not necessarily return the “hinted” primitive.
+
+There is no control whether toString returns exactly a string, or whether Symbol.toPrimitive method returns a number for the hint "number".
+
+The only mandatory thing: these methods must return a primitive, not an object.
+
+if toString or valueOf returns an object, there’s no error, but such value is ignored (like if the method didn’t exist). 
+In contrast, Symbol.toPrimitive is stricter, it must return a primitive, otherwise there will be an error.
+
+## Further conversions
+As we know already, many operators and functions perform type conversions, e.g. multiplication * converts operands to numbers.
+If we pass an object as an argument, then there are two stages of calculations:
+
+1. The object is converted to a primitive (using the rules described above).
+2. If necessary for further calculations, the resulting primitive is also converted.
+
+Eg:
+`let obj = {`
+  // toString handles all conversions in the absence of other methods
+`  toString() {`
+ `   return "2";`
+  `}`
+`};`
+
+`alert(obj * 2); // 4, object converted to primitive "2", then multiplication made it a number`
+
+1. The multiplication obj * 2 first converts the object to primitive (that’s a string "2").
+2. Then "2" * 2 becomes 2 * 2 (the string is converted to number).
+
+Binary plus will concatenate strings in the same situation, as it gladly accepts a string:
+
+`let obj = {`
+`  toString() {`
+  `  return "2";`
+ ` }`
+`};`
+
+`alert(obj + 2); // 22 ("2" + 2), conversion to primitive returned a string => concatenation`
+
+# Summary
+The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
+
+There are 3 types (hints) of it:
+
+* "string" (for alert and other operations that need a string)
+* "number" (for maths)
+* "default" (few operators, usually objects implement it the same way as "number")
+
+The specification describes explicitly which operator uses which hint.
+
+1. Call obj[Symbol.toPrimitive](hint) if the method exists,
+2. Otherwise if hint is "string" try calling obj.toString() or obj.valueOf(), whatever exists.
+3. Otherwise if hint is "number" or "default" try calling obj.valueOf() or obj.toString(), whatever exists.
+
+All these methods must return a primitive to work (if defined).
+
+In practice, it’s often enough to implement only obj.toString() as a “catch-all” method for string conversions that should return a “human-readable” representation of an object, for logging or debugging purposes.
