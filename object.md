@@ -7,7 +7,7 @@ An object can be created with figure brackets {…} with an optional list of pro
 An empty object can be created using one of two syntaxes:
 Eg:
 `let user = new Object(); // "object constructor" syntax`\
-`let user = {};  // "object literal" syntax`\
+`let user = {};  // "object literal" syntax`
 
 Usually, the figure brackets {...} are used. That declaration is called an object literal.
 
@@ -31,13 +31,13 @@ Property values are accessible using the dot notation:
 Eg:
 // get property values of the object:
 `alert( user.name ); // John`\
-`alert( user.age ); // 30`\
+`alert( user.age ); // 30`
 
 The value can be of any type. Let’s add a boolean one:
-`user.isAdmin = true;`\
+`user.isAdmin = true;`
 
 To remove a property, we can use the delete operator:
-`delete user.age;`\
+`delete user.age;`
 
 We can also use multiword property names, but then they must be quoted:
 Eg:
@@ -45,14 +45,14 @@ Eg:
 `  name: "John",`\
  `age: 30,`\
  `"likes birds": true  // multiword property name must be quoted`\
-`}`\
+`}`
 
 The last property in the list may end with a comma:
 Eg:
 `let user = {`\
 `  name: "John",`\
 `  age: 30,`\
-`}`\
+`}`
 
 That is called a “trailing” or “hanging” comma. Makes it easier to add/remove/move around properties, because all lines become alike.
 
@@ -60,7 +60,7 @@ That is called a “trailing” or “hanging” comma. Makes it easier to add/r
 
 For multiword properties, the dot access doesn’t work:
 // this would give a syntax error
-`user.likes birds = true`\
+`user.likes birds = true`
 
 JavaScript doesn’t understand that. It thinks that we address user.likes, and then gives a syntax error when comes across unexpected birds.
 
@@ -74,18 +74,18 @@ Eg:
 `// get`
 `alert(user["likes birds"]); // true`\
 `// delete`
-`delete user["likes birds"];`\
+`delete user["likes birds"];`
 
 Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
 Square brackets also provide a way to obtain the property name as the result of any expression – as opposed to a literal string – like from a variable as follows:
 Eg:
 `let key = "likes birds";`\
 `// same as user["likes birds"] = true;`\
-`user[key] = true;`\
+`user[key] = true;`
 
 Here, the variable key may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
 
-For instance:
+Eg:
 `let user = {`\
 `  name: "John",`\
 `  age: 30`\
@@ -95,12 +95,13 @@ For instance:
 `alert( user[key] ); // John (if enter "name")`\
 
 The dot notation cannot be used in a similar way:
+Eg:
 `let user = {`\
 `  name: "John",`\
 `  age: 30`\
 `};`\
 `let key = "name";`\
-`alert( user.key ) // undefined`\
+`alert( user.key ) // undefined`
 
 ## Computed properties
 
@@ -111,7 +112,7 @@ Eg:
 `let bag = {`\
 `  [fruit]: 5, // the name of the property is taken from the variable fruit`\
 `};`\
-`alert( bag.apple ); // 5 if fruit="apple"`\
+`alert( bag.apple ); // 5 if fruit="apple"`
 
 The meaning of a computed property is simple: [fruit] means that the property name should be taken from fruit.
 
@@ -123,14 +124,14 @@ Eg:
 `let fruit = prompt("Which fruit to buy?", "apple");`\
 `let bag = {};`\
 `// take property name from the fruit variable`\
-`bag[fruit] = 5;`\
+`bag[fruit] = 5;`
 
 We can use more complex expressions inside square brackets:
 Eg:
 `let fruit = 'apple';`\
 `let bag = {`\
  ` [fruit + 'Computers']: 5 // bag.appleComputers = 5`\
-`};`\
+`};`
 
 Square brackets are much more powerful than dot notation. They allow any property names and variables. But they are also more cumbersome to write.
 
@@ -145,12 +146,12 @@ Eg:
 `  return {`\
 `    name: name,`\
 `    age: age,`\
- // ...other properties
+` // ...other properties`\
 `  };`\
-`}`\
+`}`
 
 `let user = makeUser("John", 30);`\
-`alert(user.name); // John`\
+`alert(user.name); // John`
 
 In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there’s a special property value shorthand to make it shorter.
 
@@ -163,14 +164,14 @@ Eg:
  `  age,  // same as age: age`\
  `  // ...`\
 `  };`\
-`}`\
+`}`
 
 We can use both normal properties and shorthands in the same object:
 Eg:
 `let user = {`\
 `  name,  // same as name:name`\
 `  age: 30`\
-`};`\
+`};`
 
 ## Property names limitations
 
@@ -181,9 +182,9 @@ Eg:
 `  for: 1,`\
 `  let: 2,`\
 `  return: 3`\
-`};`\
+`};`
 
-`alert( obj.for + obj.let + obj.return );  // 6`\
+`alert( obj.for + obj.let + obj.return );  // 6`
 
 In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
 
@@ -194,18 +195,18 @@ For instance, a number 0 becomes a string "0" when used as a property key:
 Eg:
 `let obj = {`\
 `  0: "test" // same as "0": "test"`\
-`};`\
+`};`
 
 // both alerts access the same property (the number 0 is converted to string "0")
 `alert( obj["0"] ); // test`\
-`alert( obj[0] ); // test (same property)`\
+`alert( obj[0] ); // test (same property)`
 
 There’s a minor gotcha with a special property named **proto**. We can’t set it to a non-object value:
 
 Eg:
 `let obj = {};`\
 `obj.__proto__ = 5; // assign a number`\
-`alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended`\
+`alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended`
 
 As we see from the code, the assignment to a primitive 5 is ignored.
 
@@ -216,21 +217,21 @@ A notable feature of objects in JavaScript, compared to many other languages, is
 Reading a non-existing property just returns undefined. So we can easily test whether the property exists:
 Eg:
 `let user = {};`\
-`alert( user.noSuchProperty === undefined ); // true means "no such property"`\
+`alert( user.noSuchProperty === undefined ); // true means "no such property"`
 
 There’s also a special operator "in" for that.
 The syntax is:"key" in object"
 Eg:
 `let user = { name: "John", age: 30 };`\
 `alert( "age" in user ); // true, user.age exists`\
-`alert( "blabla" in user ); // false, user.blabla doesn't exist`\
+`alert( "blabla" in user ); // false, user.blabla doesn't exist`
 
 Please note that on the left side of in there must be a property name. That’s usually a quoted string.
 If we omit quotes, that means a variable should contain the actual name to be tested.
 Eg:
 `let user = { age: 30 };`\
 `let key = "age";`\
-`alert( key in user ); // true, property "age" exists`\
+`alert( key in user ); // true, property "age" exists`
 
 Why does the in operator exist? Isn’t it enough to compare against undefined?
 Well, most of the time the comparison with undefined works fine. But there’s a special case when it fails, but "in" works correctly.
@@ -239,11 +240,11 @@ It’s when an object property exists, but stores undefined:
 Eg:
 `let obj = {`\
 `  test: undefined`\
-`};`\
+`};`
 
-`alert( obj.test ); // it's undefined, so - no such property?`\
+`alert( obj.test ); // it's undefined, so - no such property?`
 
-`alert( "test" in obj ); // true, the property does exist!`\
+`alert( "test" in obj ); // true, the property does exist!`
 
 In the code above, the property obj.test technically exists. So the in operator works right.
 Situations like this happen very rarely, because undefined should not be explicitly assigned. We mostly use null for “unknown” or “empty” values. So the in operator is an exotic guest in the code.
@@ -255,20 +256,20 @@ To walk over all keys of an object, there exists a special form of the loop: for
 - The syntax:
   `for (key in object) {`\
   `  // executes the body for each key among object properties`\
-  `}`\
+  `}`
 
 `let user = {`\
 `  name: "John",`\
 `  age: 30,`\
  ` isAdmin: true`\
-`};`\
+`};`
 
 `for (let key in user) {`\
 `  // keys`\
  ` alert( key );  // name, age, isAdmin`\
 `  // values for the keys`\
 `  alert( user[key] ); // John, 30, true`\
-`}`\
+`}`
 
 Note that all “for” constructs allow us to declare the looping variable inside the loop, like let key here.
 Also, we could use another variable name here instead of key. For instance, "for (let prop in obj)" is also widely used.
@@ -288,11 +289,11 @@ Eg:
 `  "44": "Great Britain",`\
 `  // ..,`\
 `  "1": "USA"`\
-`};`\
+`};`
 
 `for (let code in codes) {`\
  ` alert(code); // 1, 41, 44, 49`\
-`}`\
+`}`
 
 The object may be used to suggest a list of options to the user. If we’re making a site mainly for a German audience then we probably want 49 to be the first.
 
@@ -312,7 +313,7 @@ Eg:
 `// Math.trunc is a built-in function that removes the decimal part`\
 `alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property`\
 `alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property`\
-`alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property`\
+`alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property`
 
 …On the other hand, if the keys are non-integer, then they are listed in the creation order:
 Eg:
@@ -324,7 +325,7 @@ Eg:
 `// non-integer properties are listed in the creation order`\
 `for (let prop in user) {`\
 `  alert( prop ); // name, surname, age`\
-`}`\
+`}`
 
 So, to fix the issue with the phone codes, we can “cheat” by making the codes non-integer. Adding a plus "+" sign before each code is enough.
 Eg:
@@ -334,11 +335,11 @@ Eg:
 `  "+44": "Great Britain",`\
 `  // ..,`\
 `  "+1": "USA"`\
-`};`\
+`};`
 
 `for (let code in codes) {`\
 `  alert( +code ); // 49, 41, 44, 1`\
-`}`\
+`}`
 
 ## Hello, object
 
@@ -354,7 +355,7 @@ Write the code, one line for each action:
 `user.name="John";`\
 `user.surname="Smith";`\
 `user.name="Pete";`\
-`delete user.name;`\
+`delete user.name;`
 
 ## Check for emptiness
 
@@ -363,14 +364,14 @@ Write the function isEmpty(obj) which returns true if the object has no properti
 `let schedule = {};`\
 `alert( isEmpty(schedule) ); // true`\
 `schedule["8:30"] = "get up";`\
-`alert( isEmpty(schedule) ); // false`\
+`alert( isEmpty(schedule) ); // false`
 
 `function isEmpty(obj){`\
 `for(let key in obj){`\
 `return false;`\
 `}`\
 `return true;`\
-`}`\
+`}`
 
 ## Sum object properties
 
@@ -387,9 +388,9 @@ If salaries is empty, then the result must be 0.
 `let sum=0;`\
 `for(let key in salaries){`\
 `sum+=salaries[key];`\
-`}`\
+`}`
 
-`alert (sum);`\
+`alert (sum);`
 
 ## Multiply numeric property values by 2
 
@@ -407,7 +408,7 @@ multiplyNumeric(menu);
 `width: 400,`\
 `height: 600,`\
 `title: "My menu"`\
-`};`\
+`};`
 
 `function multiplyNumeric(obj){`\
 `for (let key in obj){`\
@@ -415,34 +416,35 @@ multiplyNumeric(menu);
 `obj[key]\*=2;`\
 `}`\
 `}`\
-`}`\
+`}`
+
 ## Summary
+
 Objects are associative arrays with several special features.
 
 They store properties (key-value pairs), where:
 
-* Property keys must be strings or symbols (usually strings).
-* Values can be of any type.
+- Property keys must be strings or symbols (usually strings).
+- Values can be of any type.
 
 To access a property, we can use:
 
-* The dot notation: obj.property.
-* Square brackets notation obj["property"]. Square brackets allow taking the key from a variable, like obj[varWithKey].
+- The dot notation: obj.property.
+- Square brackets notation obj["property"]. Square brackets allow taking the key from a variable, like obj[varWithKey].
 
 Additional operators:
-* To delete a property: delete obj.prop.
-* To check if a property with the given key exists: "key" in obj.
-* To iterate over an object: for (let key in obj) loop.
+
+- To delete a property: delete obj.prop.
+- To check if a property with the given key exists: "key" in obj.
+- To iterate over an object: for (let key in obj) loop.
 
 What we’ve studied in this chapter is called a “plain object”, or just Object.
 
 There are many other kinds of objects in JavaScript:
 
-* Array to store ordered data collections,
-* Date to store the information about the date and time,
-* Error to store the information about an error.
-
-
+- Array to store ordered data collections,
+- Date to store the information about the date and time,
+- Error to store the information about an error.
 
 # Object references and copying
 
@@ -452,10 +454,11 @@ Let’s start with a primitive, such as a string.
 Here we put a copy of message into phrase:
 Eg:
 `let message = "Hello!";`\
-`let phrase = message;`\
+`let phrase = message;`
 
 A variable assigned to an object stores not the object itself, but its “address in memory” – in other words “a reference” to it.
 Eg:
+
 `let user = {`\
 `  name: "John"`\
 `};`\
@@ -467,9 +470,10 @@ We may think of an object variable, such as user, like a sheet of paper with the
 When we perform actions with the object, e.g. take a property user.name, the JavaScript engine looks at what’s at that address and performs the operation on the actual object.
 
 When an object variable is copied, the reference is copied, but the object itself is not duplicated.
-let user = { name: "John" };
-let admin = user; // copy the reference
-Now we have two variables, each storing a reference to the same object:
+
+`let user = { name: "John" };`\
+`let admin = user; // copy the reference`\
+`Now we have two variables, each storing a reference to the same object:`\
 ![admin reference](images/ref2.png "reference")
 
 ## Comparison by reference
@@ -478,28 +482,28 @@ Two objects are equal only if they are the same object.
 
 For instance, here a and b reference the same object, thus they are equal:
 `let a = {};`\
-`let b = a; // copy the reference`\
+`let b = a; // copy the reference`
 
 `alert( a == b ); // true, both variables reference the same object`\
-`alert( a === b ); // true`\
+`alert( a === b ); // true`
 
 And here two independent objects are not equal, even though they look alike (both are empty):
 
 `let a = {};`\
-`let b = {}; // two independent objects`\
+`let b = {}; // two independent objects`
 
-`alert( a == b ); // false`\
+`alert( a == b ); // false`
 
 For comparisons like obj1 > obj2 or for a comparison against a primitive obj == 5, objects are converted to primitives.
 
 - Const objects can be modified
   An important side effect of storing objects as references is that an object declared as const can be modified.
   Eg:
- ` const user = {`\
- ` name: "John"`\
-`  };`\
+  ` const user = {`\
+   ` name: "John"`\
+  `  };`
 
-`user.name = "Pete"; // (@)`\
+`user.name = "Pete"; // (@)`
 
 `alert(user.name); // Pete`\
 It might seem that the line (@) would cause an error, but it does not. The value of user is constant, it must always reference the same object, but properties of that object are free to change.
@@ -516,28 +520,32 @@ Eg:
 `let user = {`\
 `  name: "John",`\
 `  age: 30`\
-`};`\
+`};`
 
 `let clone = {}; // the new empty object`\
 
-`// let's copy all user properties into it`
+`// let's copy all user properties into it`\
 `for (let key in user) {`\
 ` clone[key] = user[key];`\
-`}`\
+`}`
 
-`// now clone is a fully independent object with the same content`
-`clone.name = "Pete"; // changed the data in it`\
+`// now clone is a fully independent object with the same content`\
+`clone.name = "Pete"; // changed the data in it`
 
-`alert( user.name ); // still John in the original object`\
+`alert( user.name ); // still John in the original object`
 
 We can also use the method Object.assign.
 The syntax is:
+
 Object.assign(dest, ...sources)
+
 The first argument dest is a target object.
 Further arguments is a list of source objects.
 It copies the properties of all source objects into the target dest, and then returns it as the result.
 For example, we have user object, let’s add a couple of permissions to it:
+
 Eg:
+
 `let user = { name: "John" };`\
 `let permissions1 = { canView: true };`\
 `let permissions2 = { canEdit: true };`\
@@ -546,28 +554,30 @@ Eg:
 `// now user = { name: "John", canView: true, canEdit: true }`\
 `alert(user.name); // John`\
 `alert(user.canView); // true`\
-`alert(user.canEdit); // true`\
+`alert(user.canEdit); // true`
 
 If the copied property name already exists, it gets overwritten:
 Eg:
-`let user = { name: "John" };`\
 
-`Object.assign(user, { name: "Pete" });`\
+`let user = { name: "John" };`
 
-`alert(user.name); // now user = { name: "Pete" }`\
+`Object.assign(user, { name: "Pete" });`
+
+`alert(user.name); // now user = { name: "Pete" }`
 
 We also can use Object.assign to perform a simple object cloning:
 
 Eg:
+
 `let user = {`\
 `name: "John",`\
 ` age: 30`\
-`};`\
+`};`
 
 `let clone = Object.assign({}, user);`\
 
 `alert(clone.name); // John`\
-`alert(clone.age); // 30`\
+`alert(clone.age); // 30`
 
 Here it copies all properties of user into the empty object and returns it.
 
@@ -582,9 +592,9 @@ Eg:
 `  height: 182,`\
 ` width: 50`\
 ` }`\
-`};`\
+`};`
 
-`alert( user.sizes.height ); // 182`\
+`alert( user.sizes.height ); // 182`
 
 Now it’s not enough to copy clone.sizes = user.sizes, because user.sizes is an object, and will be copied by reference, so clone and user will share the same sizes:
 
@@ -594,15 +604,15 @@ Now it’s not enough to copy clone.sizes = user.sizes, because user.sizes is an
 `    height: 182,`\
 `    width: 50`\
 ` }`\
-`};`\
+`};`
 
-`let clone = Object.assign({}, user);`\
+`let clone = Object.assign({}, user);`
 
-`alert( user.sizes === clone.sizes ); // true, same object`\
+`alert( user.sizes === clone.sizes ); // true, same object`
 
 `// user and clone share sizes`\
 `user.sizes.width = 60;    // change a property from one place`\
-`alert(clone.sizes.width); // 60, get the result from the other one`\
+`alert(clone.sizes.width); // 60, get the result from the other one`
 
 To fix that and make user and clone truly separate objects, we should use a cloning loop that examines each value of user[key] and, if it’s an object, then replicate its structure as well. That is called a “deep cloning” or “structured cloning. There’s structuredClone method that implements deep cloning.
 
@@ -616,32 +626,34 @@ Eg:
 ` height: 182,`\
 ` width: 50`\
 `}`\
-`};`\
+`};`
 
-`let clone = structuredClone(user);`\
+`let clone = structuredClone(user);`
 
-`alert( user.sizes === clone.sizes ); // false, different objects`\
+`alert( user.sizes === clone.sizes ); // false, different objects`
 
 `// user and clone are totally unrelated now`\
 `user.sizes.width = 60;    // change a property from one place`\
-`alert(clone.sizes.width); // 50, not related`\
+`alert(clone.sizes.width); // 50, not related`
 
 The structuredClone method can clone most data types, such as objects, arrays, primitive values.
 
 It also supports circular references, when an object property references the object itself (directly or via a chain or references).
 
 Eg:
+
 `let user = {};`\
 `// let's create a circular reference:`\
 `// user.me references the user itself`\
-`user.me = user;`\
+`user.me = user;`
 
 `let clone = structuredClone(user);`\
-`alert(clone.me === clone); // true`\
+`alert(clone.me === clone); // true`
 
 As you can see, clone.me references the clone, not the user! So the circular reference was cloned correctly as well.
 Although, there are cases when structuredClone fails. When an object has a function property:
 Eg:
+
 `// error`
 `structuredClone({`\
 `  f: function() {}`\
@@ -675,18 +687,19 @@ There’s a background process in the JavaScript engine that is called garbage c
 Eg:
 `let user = {`\
 ` name: "John"`\
-`};`\
+`};`
 
 The global variable "user" references the object {name: "John"} (we’ll call it John for brevity). The "name" property of John stores a primitive, so it’s painted inside the object.
-<Global (user)> -> Object (name : "John")
+![user reference](images/memory-user-john.svg "reference")
 
 Here the arrow depicts an object reference. The global variable "user" references the object {name: "John"} (we’ll call it John for brevity). The "name" property of John stores a primitive, so it’s painted inside the object.
 
 If the value of user is overwritten, the reference is lost:
 Eg:
-` user = null;`\
+` user = null;`
 
-Global (user:null ) -> Object (name : "John")[deleted]
+![user reference](images/memory-user-john-lost.svg "reference")
+
 Now John becomes unreachable. There’s no way to access it, no references to it. Garbage collector will junk the data and free the memory.
 
 ## Two references
@@ -696,13 +709,15 @@ Now let’s imagine we copied the reference from user to admin:
 Eg:
 `let user = {`\
 `name: "John"`\
-`};`\
+`};`
 
-`let admin = user;`\
+`let admin = user;`
 
-Global (user & admin ) -> Object (name : "John")
+![user reference](images/memory-user-john-admin.svg "reference")
+
 Now if we do the same:
 Eg:
+
 ` user = null;`\
 Then the object is still reachable via admin global variable, so it must stay in memory. If we overwrite admin too, then it can be removed.
 
@@ -716,53 +731,40 @@ Now a more complex example. The family:
 
 `return {`\
 `father: man,`\
-`mother: woman`\
+`mother: woman`
 `}`\
-`}`\
+`}`
 
 `let family = marry({`\
 `name: "John"`\
 `}, {`\
 `name: "Ann"`\
-`});`\
+`});`
 
 Function marry “marries” two objects by giving them references to each other and returns a new object that contains them both.
 The resulting memory structure:
-<global variable> -> Object -> Object[name:"John"]
-                family |father   ^ |
-                       | husband | | wife
-                mother v         | v
-                           Object[name:"Ann"]
+![user reference](images/family.svg "reference")
 
 As of now, all objects are reachable.
 Now let’s remove two references:
 
 Eg:
 `delete family.father;`\
-`delete family.mother.husband;`\
+`delete family.mother.husband;`
 
-<global variable> -> Object -> Object[name:"John"]
-                 family |father X   ^ |
-                        | husband X | | wife
-                mother  v           | v
-                        Object[name:"Ann"]
+![user reference](images/family-delete-refs.svg "reference")
 
 It’s not enough to delete only one of these two references, because all objects would still be reachable.
 
 But if we delete both, then we can see that John has no incoming reference any more:
 
-<global variable> -> Object -> Object[name:"John"] DELETED
-                family |father X ^ |        DELETED
-                       | husband X | | wife DELETED
-                mother v           | v      DELETED
-                         Object[name:"Ann"]
+![user reference](images/family-no-father.svg "reference")
 
 Outgoing references do not matter. Only incoming ones can make an object reachable. So, John is now unreachable and will be removed from the memory with all its data that also became unaccessible.
 
 After garbage collection:
 
-<global variable> -> Object -> Object[name:"Ann"]
-                 family     mother
+![user reference](images/family-no-father-2.svg "reference")
 
 ## Unreachable island
 
@@ -772,11 +774,7 @@ Eg:
 `family = null;`
 The in-memory picture becomes:
 
-<global> Object -> Object[name:"John"]   DELETED
-family:null           | father  ^ |      DELETED
-                      | husband | | wife DELETED
-            mother    v         | v      DELETED
-                   Object[name:"Ann"]    DELETED
+![user reference](images/family-no-family.svg "reference")
 
 This example demonstrates how important the concept of reachability is.
 It’s obvious that John and Ann are still linked, both have incoming references. But that’s not enough.
@@ -791,6 +789,21 @@ The basic garbage collection algorithm is called “mark-and-sweep”. The follo
 - …And so on until every reachable (from the roots) references are visited.
 - All objects except marked ones are removed.
 
+For instance, let our object structure look like this:
+![user reference](images/garbage-collection-1.svg "reference")
+
+We can clearly see an “unreachable island” to the right side. Now let’s see how “mark-and-sweep” garbage collector deals with it.
+
+The first step marks the roots:
+
+![user reference](images/garbage-collection-3.svg "reference")
+
+…And continue to follow further references, while possible:
+![user reference](images/garbage-collection-4.svg "reference")
+
+Then we follow their references and mark referenced objects:
+![user reference](images/garbage-collection-5.svg "reference")
+
 JavaScript engines apply many optimizations to make it run faster and not introduce any delays into the code execution.
 
 Some of the optimizations:
@@ -802,6 +815,7 @@ Some of the optimizations:
 - Idle-time collection – the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
 
 ## Summary
+
 The main things to know:
 
 Garbage collection is performed automatically. We cannot force or prevent it.
@@ -817,13 +831,13 @@ Eg:
 `let user = {`\
 ` name: "John",`\
 ` age: 30`\
-`};`\
+`};`
 
 `user.sayHi = function() {`\
 `alert("Hello!");`\
-`};`\
+`};`
 
-`user.sayHi(); // Hello!`\
+`user.sayHi(); // Hello!`
 
 Here we’ve just used a Function Expression to create a function and assign it to the property user.sayHi of the object.Then we can call it as user.sayHi(). The user can now speak!
 
@@ -836,14 +850,14 @@ Eg:
 `let user = {`\
 ` name: "John",`\
 ` age: 30`\
-`};`\
+`};`
 
-// first, declare
+`// first, declare`\
 `function sayHi() {`\
 `  alert("Hello!");`\
-`}`\
+`}`
 
-// then add as a method
+`// then add as a method`\
 `user.sayHi = sayHi;`\
 
 `user.sayHi(); // Hello!`\
@@ -857,19 +871,19 @@ When we write our code using objects to represent entities, that’s called obje
 There exists a shorter syntax for methods in an object literal:
 Eg:
 
-// these objects do the same
+`// these objects do the same`
 `user = {`\
 `sayHi: function() {`\
 ` alert("Hello");`\
 `}`\
-`};`\
+`};`
 
-// method shorthand looks better, right?
+`// method shorthand looks better, right?`
 `user = {`\
 `sayHi() { // same as "sayHi: function(){...}"`\
 `alert("Hello");`\
 `}`\
-`};`\
+`};`
 
 As demonstrated, we can omit "function" and just write sayHi().
 
@@ -883,14 +897,14 @@ For instance:
 Eg:
 `let user = {`\
 `name: "John",`\
-`age: 30,`\
+`age: 30,`
 
 `  sayHi() {`\
 // "this" is the "current object"
 `alert(this.name);`\
-`}`\
+`}`
 
-`};`\
+`};`
 
 `user.sayHi(); // John`\
 Here during the execution of user.sayHi(), the value of this will be user.
@@ -898,11 +912,11 @@ Technically, it’s also possible to access the object without this, by referenc
 
 `let user = {`\
 `name: "John",`\
-`age: 30,`\
+`age: 30,`
 
 `  sayHi() {`\
 `alert(user.name); // "user" instead of "this"`\
-`}`\
+`}`
 
 `};`\
 …But such code is unreliable. If we decide to copy user to another variable, e.g. admin = user and overwrite user with something else, then it will access the wrong object.
@@ -911,16 +925,16 @@ That’s demonstrated below:
 Eg:
 `let user = {`\
 ` name: "John",`\
-`  age: 30,`\
+`  age: 30,`
 
 ` sayHi() {`\
 `  alert( user.name ); // leads to an error`\
-`  }`\
+`  }`
 
-`};`\
+`};`
 
 `let admin = user;`\
-`user = null; // overwrite to make things obvious`\
+`user = null; // overwrite to make things obvious`
 
 `admin.sayHi();`\
 
@@ -933,19 +947,20 @@ There’s no syntax error in the following example:
 Eg:
 `function sayHi() {`\
 `  alert( this.name );`\
-`}`\
+`}`
 
 The value of this is evaluated during the run-time, depending on the context.
 For instance, here the same function is assigned to two different objects and has different “this” in the calls:
 Eg:
+
 `let user = { name: "John" };`\
-`let admin = { name: "Admin" };`\
+`let admin = { name: "Admin" };`
 
 `function sayHi() {`\
 `  alert( this.name );`\
-`}`\
+`}`
 
-// use the same function in two objects
+`// use the same function in two objects`\
 `user.f = sayHi;`\
 `admin.f = sayHi;`\
 
@@ -954,7 +969,7 @@ Eg:
 `user.f(); // John  (this == user)`\
 `admin.f(); // Admin  (this == admin)`\
 
-`admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)`\
+`admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)`
 
 The rule is simple: if obj.f() is called, then this is obj during the call of f. So it’s either user or admin in the example above.
 
@@ -964,9 +979,9 @@ We can even call the function without an object at all:
 Eg:
 `    function sayHi() {`\
 `  alert(this);`\
-`}`\
+`}`
 
-`sayHi(); // undefined`\
+`sayHi(); // undefined`
 
 In this case this is undefined in strict mode. If we try to access this.name, there will be an error.
 In non-strict mode the value of this in such case will be the global object (window in a browser, we’ll get to it later in the chapter Global object). This is a historical behavior that "use strict" fixes.
@@ -994,7 +1009,7 @@ Eg:
 `    let arrow = () => alert(this.firstName);`\
 `    arrow();`\
 `  }`\
-`};`\
+`};`
 
 `user.sayHi(); // Ilya`\
 That’s a special feature of arrow functions, it’s useful when we actually do not want to have a separate this, but rather to take it from the outer context.
@@ -1010,11 +1025,11 @@ Eg:
 `    name: "John",`\
 `    ref: this`\
 `  };`\
-`}`\
+`}`
 
-`let user = makeUser();`\
+`let user = makeUser();`
 
-`alert( user.ref.name ); // Error: Cannot read property 'name' of undefined`\
+`alert( user.ref.name ); // Error: Cannot read property 'name' of undefined`
 
 Answer: an error.
 
@@ -1028,13 +1043,14 @@ We can rewrite the function and return the same this with undefined value:
 Eg:
 `function makeUser(){`\
 `  return this; // this time there's no object literal`\
-`}`\
+`}`
 
-`alert( makeUser().name ); // Error: Cannot read property 'name' of undefined`\
+`alert( makeUser().name ); // Error: Cannot read property 'name' of undefined`
 
 As you can see the result of alert( makeUser().name ) is the same as the result of alert( user.ref.name ) from the previous example.
 Here’s the opposite case:
 Eg:
+
 `function makeUser() {`\
 ` return {`\
 ` name: "John",`\
@@ -1042,7 +1058,7 @@ Eg:
 `   return this;`\
 `  }`\
 ` };`\
-`}`\
+`}`
 
 `let user = makeUser();`\
 
@@ -1067,16 +1083,15 @@ mul() multiplies saved values and returns the result.
 `this.a = +prompt('a?', 0);`\
 `this.b = +prompt('b?', 0);`\
 `}`\
-`};`\
+`};`
 
 `calculator.read();`\
 `alert( calculator.sum() );`\
-`alert( calculator.mul() );`\
-
+`alert( calculator.mul() );`
 
 #### Chaining
 
- There’s a ladder object that allows to go up and down:
+There’s a ladder object that allows to go up and down:
 
 ` let ladder = {`\
 `  step: 0,`\
@@ -1086,19 +1101,19 @@ mul() multiplies saved values and returns the result.
 `  },`\
 `  down() {`\
 `    this.step--;`\
-   ` return this;`\
+ ` return this;`\
 `  },`\
 `  showStep: function() { // shows the current step`\
 `    alert( this.step );`\
-   ` return this;`\
+ ` return this;`\
 `  }`\
-`};`\
+`};`
 
 `ladder.up();`\
 `ladder.up();`\
 `ladder.down();`\
 `ladder.showStep(); // 1`\
 `ladder.down();`\
-`ladder.showStep(); // 0`\
+`ladder.showStep(); // 0`
 
 `ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0`
