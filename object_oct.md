@@ -6,6 +6,7 @@ An object can be created with figure brackets {…} with an optional list of pro
 
 An empty object can be created using one of two syntaxes:
 Eg:
+
 `let user = new Object(); // "object constructor" syntax`\
 `let user = {};  // "object literal" syntax`
 
@@ -15,6 +16,7 @@ Usually, the figure brackets {...} are used. That declaration is called an objec
 
 We can immediately put some properties into {...} as “key: value” pairs:
 Eg:
+
 `let user = {     // an object`\
 `  name: "John",  // by key "name" store value "John"`\
  ` age: 30        // by key "age" store value 30`\
@@ -29,6 +31,7 @@ The second one has the name "age" and the value 30.
 Property values are accessible using the dot notation:
 
 Eg:
+
 // get property values of the object:
 `alert( user.name ); // John`\
 `alert( user.age ); // 30`
@@ -41,6 +44,7 @@ To remove a property, we can use the delete operator:
 
 We can also use multiword property names, but then they must be quoted:
 Eg:
+
 `let user = {`\
 `  name: "John",`\
  `age: 30,`\
@@ -49,6 +53,7 @@ Eg:
 
 The last property in the list may end with a comma:
 Eg:
+
 `let user = {`\
 `  name: "John",`\
 `  age: 30,`\
@@ -68,6 +73,7 @@ The dot requires the key to be a valid variable identifier. That implies: contai
 
 There’s an alternative “square bracket notation” that works with any string:
 Eg:
+
 `let user = {};`\
 `// set`
 `user["likes birds"] = true;`\
@@ -79,6 +85,7 @@ Eg:
 Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
 Square brackets also provide a way to obtain the property name as the result of any expression – as opposed to a literal string – like from a variable as follows:
 Eg:
+
 `let key = "likes birds";`\
 `// same as user["likes birds"] = true;`\
 `user[key] = true;`
@@ -86,16 +93,18 @@ Eg:
 Here, the variable key may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
 
 Eg:
+
 `let user = {`\
 `  name: "John",`\
 `  age: 30`\
 `};`\
-`let key = prompt("What do you want to know about the user?", "name");`\
+`let key = prompt("What do you want to know about the user?", "name");`
 `// access by variable`
 `alert( user[key] ); // John (if enter "name")`\
 
 The dot notation cannot be used in a similar way:
 Eg:
+
 `let user = {`\
 `  name: "John",`\
 `  age: 30`\
@@ -108,6 +117,7 @@ Eg:
 We can use square brackets in an object literal, when creating an object. That’s called computed properties.
 
 Eg:
+
 `let fruit = prompt("Which fruit to buy?", "apple");`\
 `let bag = {`\
 `  [fruit]: 5, // the name of the property is taken from the variable fruit`\
@@ -121,6 +131,7 @@ So, if a visitor enters "apple", bag will become {apple: 5}.
 Essentially, that works the same as:
 
 Eg:
+
 `let fruit = prompt("Which fruit to buy?", "apple");`\
 `let bag = {};`\
 `// take property name from the fruit variable`\
@@ -128,6 +139,7 @@ Eg:
 
 We can use more complex expressions inside square brackets:
 Eg:
+
 `let fruit = 'apple';`\
 `let bag = {`\
  ` [fruit + 'Computers']: 5 // bag.appleComputers = 5`\
@@ -142,6 +154,7 @@ So most of the time, when property names are known and simple, the dot is used. 
 In real code, we often use existing variables as values for property names.
 
 Eg:
+
 `function makeUser(name, age) {`\
 `  return {`\
 `    name: name,`\
@@ -158,6 +171,7 @@ In the example above, properties have the same names as variables. The use-case 
 Instead of name:name we can just write name, like this:
 
 Eg:
+
 `function makeUser(name, age) {`\
 `  return {`\
  `  name, // same as name: name`\
@@ -168,6 +182,7 @@ Eg:
 
 We can use both normal properties and shorthands in the same object:
 Eg:
+
 `let user = {`\
 `  name,  // same as name:name`\
 `  age: 30`\
@@ -178,6 +193,7 @@ Eg:
 As we already know, a variable cannot have a name equal to one of the language-reserved words like “for”, “let”, “return etc. But for an object property, there’s no such restriction:
 
 Eg:
+
 `let obj = {`\
 `  for: 1,`\
 `  let: 2,`\
@@ -193,6 +209,7 @@ Other types are automatically converted to strings.
 For instance, a number 0 becomes a string "0" when used as a property key:
 
 Eg:
+
 `let obj = {`\
 `  0: "test" // same as "0": "test"`\
 `};`
@@ -204,6 +221,7 @@ Eg:
 There’s a minor gotcha with a special property named **proto**. We can’t set it to a non-object value:
 
 Eg:
+
 `let obj = {};`\
 `obj.__proto__ = 5; // assign a number`\
 `alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended`
@@ -216,12 +234,14 @@ A notable feature of objects in JavaScript, compared to many other languages, is
 
 Reading a non-existing property just returns undefined. So we can easily test whether the property exists:
 Eg:
+
 `let user = {};`\
 `alert( user.noSuchProperty === undefined ); // true means "no such property"`
 
 There’s also a special operator "in" for that.
 The syntax is:"key" in object"
 Eg:
+
 `let user = { name: "John", age: 30 };`\
 `alert( "age" in user ); // true, user.age exists`\
 `alert( "blabla" in user ); // false, user.blabla doesn't exist`
@@ -229,6 +249,7 @@ Eg:
 Please note that on the left side of in there must be a property name. That’s usually a quoted string.
 If we omit quotes, that means a variable should contain the actual name to be tested.
 Eg:
+
 `let user = { age: 30 };`\
 `let key = "age";`\
 `alert( key in user ); // true, property "age" exists`
@@ -257,6 +278,8 @@ To walk over all keys of an object, there exists a special form of the loop: for
   `for (key in object) {`\
   `  // executes the body for each key among object properties`\
   `}`
+
+  Eg:
 
 `let user = {`\
 `  name: "John",`\
@@ -522,7 +545,7 @@ Eg:
 `  age: 30`\
 `};`
 
-`let clone = {}; // the new empty object`\
+`let clone = {}; // the new empty object`
 
 `// let's copy all user properties into it`\
 `for (let key in user) {`\
@@ -574,7 +597,7 @@ Eg:
 ` age: 30`\
 `};`
 
-`let clone = Object.assign({}, user);`\
+`let clone = Object.assign({}, user);`
 
 `alert(clone.name); // John`\
 `alert(clone.age); // 30`
