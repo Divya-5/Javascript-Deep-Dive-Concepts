@@ -165,8 +165,8 @@ Eg:
 
 `function* getPage(list, pageSize = 1) {`\
  ` for (let index = 0; index < list.length; index += pageSize) {`\
-   ` yield list.slice(index, index + pageSize);`\
-  `}`\
+ ` yield list.slice(index, index + pageSize);`\
+ `}`\
 `}`\
 
 `const list = [1, 2, 3, 4, 5, 6, 7, 8];`\
@@ -263,6 +263,10 @@ O/P-
 {value: 3, done: false}
 {value: undefined, done: true}
 
+## Difference between Normal function and Generator Function
+
+The normal functions in Javascript execute according to the non-preemptive or run to completion model, which means their execution cannot be paused in between, but generator functions have the capability to pause the execution in between with the help of the yield keyword.
+
 ## UseCases / Applications
 
 ### Generators are iterable
@@ -337,13 +341,14 @@ Eg:
 `last: this.to,`\
 
       // next() is called on each iteration by the for..of loop
- `     next() {`\
-        // it should return the value as an object {done:.., value :...}
-      `  if (this.current <= this.last) {`\
-          `return { done: false, value: this.current++ };`\
-  `      } else {`\
-     `     return { done: true };`\
-  `      }`\
+
+`     next() {`\
+ // it should return the value as an object {done:.., value :...}
+`  if (this.current <= this.last) {`\
+ `return { done: false, value: this.current++ };`\
+ `      } else {`\
+ `     return { done: true };`\
+ `      }`\
  `     }`\
  `   };`\
 
@@ -380,6 +385,7 @@ that returns values in the form {value: ..., done: true/false}
 In JS you can't do an infinite loop because you'll just loop forever and freeze up your program but with generators we can create an infinite loop that actually doesn't stop your computer and freeze your program because you're only executing it one step at a time
 
 #### Generate Ids
+
 Eg:
 `function* generateId(){`\
 `let id =1;`\
@@ -678,12 +684,12 @@ If we save you can see it's throwing that error high and it's throwing it for ou
 Eg:
 `function* gen() {`\
 `  while (true) {`\
-   ` try {`\
-     `yield 42;`\
-    `} catch (e) {`\
-     ` console.log("Error caught!");`\
-   ` }`\
-  `}`\
+ ` try {`\
+ `yield 42;`\
+ `} catch (e) {`\
+ ` console.log("Error caught!");`\
+ ` }`\
+ `}`\
 `}`\
 
 `const g = gen();`\
@@ -713,9 +719,9 @@ Eg:
 Eg:
 
 `function* gen() {`\
-  `yield 1;`\
-  `yield 2;`\
-  `yield 3;`\
+ `yield 1;`\
+ `yield 2;`\
+ `yield 3;`\
 `}`\
 
 `const g = gen();`\
@@ -731,11 +737,11 @@ Eg:
 `function* gen() {`\
  ` yield 1;`\
  ` try {`\
-  `  yield 2;`\
-   ` yield 3;`\
-  `} finally {`\
-    `yield "cleanup";`\
-  `}`\
+ `  yield 2;`\
+ ` yield 3;`\
+ `} finally {`\
+ `yield "cleanup";`\
+ `}`\
 `}`\
 
 `const g1 = gen();`\
@@ -798,11 +804,11 @@ alert(generator.next().value); // 1622650073
 
 O/P=
 
-function* pseudoRandom(seed) {
+function\* pseudoRandom(seed) {
 let value = seed;
 
 while(true) {
-value = value * 16807 % 2147483647;
+value = value \* 16807 % 2147483647;
 yield value;
 }
 
@@ -820,7 +826,7 @@ function pseudoRandom(seed) {
 let value = seed;
 
 return function() {
-value = value * 16807 % 2147483647;
+value = value \* 16807 % 2147483647;
 return value;
 }
 }
@@ -832,3 +838,119 @@ alert(generator()); // 282475249
 alert(generator()); // 1622650073
 
 That also works. But then we lose ability to iterate with for..of and to use generator composition, that may be useful elsewhere.
+
+## Real life example
+
+Cubase flow like we have a quiz app and we have some questions for that okay
+
+1) Quiz App
+quizAppQuestions = [
+{
+question: 'whats capital of India?',
+options:['Delhi', 'Chennai', 'Mumbai']
+},
+{
+question: 'whats national bird of India?',
+options:['Peacock', 'Crow','Pigeon']
+}
+]
+
+function* quizGenerator(){
+  yield quizAppQuestions[0];
+    yield quizAppQuestions[1];
+}
+
+const gfunc = quizGenerator();
+let question1=gfunc.next();
+console.log(question1);
+question1=gfunc.next();
+
+
+2) Creating a counter 
+function* makeCounter(){
+  let count=0;
+  while(true){
+    yield count++;
+  }
+
+}
+
+const counter= makeCounter();
+console.log(counter.next().value);//0
+console.log(counter.next().value);//1
+console.log(counter.next().value);//2
+
+
+## Usecases of Generators
+Generators in JavaScript are a powerful feature introduced in ECMAScript 6 (ES6). They provide a way to create iterators with a more concise syntax and offer a mechanism for lazy evaluation. Here are some common use cases for generators in JavaScript
+
+### Lazy Evaluation:
+
+Generators allow for lazy evaluation of values, meaning that the values are computed on-demand. This can be useful when dealing with large datasets or expensive computations, as you only calculate the values you need at a given moment.
+
+Eg: 
+`function* generateNumbers() {`\
+  `let i = 0;`\
+  `while (true) {`\
+    `yield i++;`\
+  `}`\
+`}`\
+
+`const numberIterator = generateNumbers();`\
+`console.log(numberIterator.next().value); // 0`\
+`console.log(numberIterator.next().value); // 1`\
+
+
+### Infinite Sequences:
+Generators can be used to represent infinite sequences or series, allowing you to work with sequences that go on indefinitely.
+
+Eg: 
+`function* fibonacci() {`\
+  `let a = 0, b = 1;`\
+  `while (true) {`\
+   ` yield a;`\
+   ` [a, b] = [b, a + b];`\
+ ` }`\
+`}`\
+
+`const fibIterator = fibonacci();`\
+`console.log(fibIterator.next().value); // 0`\
+`console.log(fibIterator.next().value); // 1`\
+`console.log(fibIterator.next().value); // 1`\
+`console.log(fibIterator.next().value); // 2`\
+`console.log(fibIterator.next().value); // 3`\
+
+
+### Custom Iterators:
+Generators make it easy to create custom iterators. The yield statement can be used to produce a sequence of values in a clean and readable way.
+
+Eg: 
+`function* customIterator(arr) {`\
+  `for (let i = 0; i < arr.length; i++) {`\
+    `yield arr[i];`\
+  `}`\
+`}`\
+
+`const myArray = [1, 2, 3, 4, 5];`\
+`const iterator = customIterator(myArray);`\
+
+`for (const value of iterator) {`\
+ ` console.log(value);`\
+`}`\
+
+### Stateful Functions:
+Generators can be used to create stateful functions where the state is maintained across multiple calls.
+
+Eg: 
+`function* statefulGenerator() {`\
+  `let count = 0;`\
+  `while (true) {`\
+    `yield count++;`\
+  `}`\
+`}`\
+
+`const counter = statefulGenerator();`\
+`console.log(counter.next().value); // 0`\
+`console.log(counter.next().value); // 1`\
+`console.log(counter.next().value); // 2`\
+`console.log(counter.next().value); // 3`\
